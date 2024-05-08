@@ -1,0 +1,9 @@
+# ninja log v5
+1	623	7368844819916823	Gra_W_Ciemno_autogen/timestamp	19522b04cb56aa31
+1	623	7368844819916823	Gra_W_Ciemno_autogen/mocs_compilation.cpp	19522b04cb56aa31
+1	623	7368844819916823	C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Gra_W_Ciemno_autogen/timestamp	19522b04cb56aa31
+1	623	7368844819916823	C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Gra_W_Ciemno_autogen/mocs_compilation.cpp	19522b04cb56aa31
+623	2142	7368844835657013	CMakeFiles/Gra_W_Ciemno.dir/Gra_W_Ciemno_autogen/mocs_compilation.cpp.obj	7a8dcee8ff80da22
+642	2176	7368844835994052	CMakeFiles/Gra_W_Ciemno.dir/main.cpp.obj	5c603d159e00b86f
+638	2208	7368844836315513	CMakeFiles/Gra_W_Ciemno.dir/mainwindow.cpp.obj	3febda5911852221
+2208	2425	7368844838351444	Gra_W_Ciemno.exe	a4809028cadd54bd
