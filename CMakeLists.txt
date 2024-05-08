@@ -17,12 +17,16 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        resources.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(Gra_W_Ciemno
+
+qt_add_executable(Gra_W_Ciemno
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        resources.qrc
+        letter.h letter.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Gra_W_Ciemno APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

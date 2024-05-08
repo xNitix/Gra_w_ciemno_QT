@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/m">
+        <file>letter.png</file>
+        <file>letter_picked.png</file>
+        <file>background1.jpg</file>
+        <file>chlop.png</file>
+        <file>tlo2.jpg</file>
+    </qresource>
+</RCC>

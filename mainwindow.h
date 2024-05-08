@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "letter.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -16,6 +17,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+public slots:
+    void onAnswerPressed(Letter* letter);
+    void onAcceptPressed();
 
 private:
     Ui::MainWindow *ui;
