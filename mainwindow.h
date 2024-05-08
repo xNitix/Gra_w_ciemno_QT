@@ -21,6 +21,7 @@ public:
 public slots:
     void onAnswerPressed(Letter* letter);
     void onAcceptPressed();
+    void textLabelDisplay(std::string text);
 
 private:
     Ui::MainWindow *ui;

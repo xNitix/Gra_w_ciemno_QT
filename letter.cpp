@@ -1,4 +1,5 @@
 #include "letter.h"
+#include <iostream>
 
 int Letter::pick_amount = 0;
 
@@ -12,11 +13,9 @@ Letter::Letter(QPushButton *button, int value)
 void Letter::changeIcon()
 {
     if(is_pressed){
-        QIcon newIcon(":/m/letter_picked.png");
-        this->button->setIcon(newIcon);
+        this->button->setStyleSheet("background-image: url(:/m/letter_picked.png); background-repeat: no-repeat; background-position: center; font-size: 15px; text-align: bottom;");
     } else {
-        QIcon newIcon(":/m/letter.png");
-        this->button->setIcon(newIcon);
+        this->button->setStyleSheet("background-image: url(:/m/letter.png); background-repeat: no-repeat; background-position: center; font-size: 15px; text-align: bottom;");
     }
 }
 
@@ -35,5 +34,6 @@ void Letter::handler()
 
 int Letter::get_value()
 {
+    std::cout << "jd " << button->text().toStdString() << " jd" <<  std::endl;
     return this->value;
 }

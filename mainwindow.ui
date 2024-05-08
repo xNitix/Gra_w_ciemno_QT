@@ -26,10 +26,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -48,10 +44,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -72,10 +64,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -94,10 +82,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -131,10 +115,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -153,10 +133,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -177,10 +153,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -199,10 +171,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -223,10 +191,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -245,10 +209,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -269,10 +229,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -291,10 +247,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -315,10 +267,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -337,10 +285,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -361,10 +305,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -383,10 +323,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -407,10 +343,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -429,10 +361,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -453,10 +381,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -467,18 +391,14 @@
    <widget class="QPushButton" name="pushButton_20">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>160</y>
+      <x>180</x>
+      <y>240</y>
       <width>101</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -490,18 +410,14 @@
    <widget class="QPushButton" name="pushButton_21">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>80</y>
+      <x>320</x>
+      <y>240</y>
       <width>101</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -513,7 +429,7 @@
    <widget class="QPushButton" name="pushButton_22">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>40</x>
       <y>160</y>
       <width>101</width>
       <height>61</height>
@@ -521,10 +437,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -537,17 +449,13 @@
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>240</y>
+      <y>160</y>
       <width>101</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -560,17 +468,13 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>240</y>
+      <y>160</y>
       <width>101</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -582,18 +486,14 @@
    <widget class="QPushButton" name="pushButton_25">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>160</y>
+      <x>40</x>
+      <y>80</y>
       <width>101</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -614,10 +514,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
-    </property>
     <property name="iconSize">
      <size>
       <width>100</width>
@@ -636,10 +532,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="resources.qrc">
-      <normaloff>:/m/letter.png</normaloff>:/m/letter.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -717,6 +609,30 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="textLabel">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>40</y>
+      <width>321</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="text">
+     <string>Witaj w grze w ciemno,
+ wybierz 5 kopert, 
+następnie zatwierdź wybór</string>
+    </property>
+   </widget>
    <zorder>label</zorder>
    <zorder>pushButton</zorder>
    <zorder>pushButton_2</zorder>
@@ -749,6 +665,7 @@
    <zorder>label_2</zorder>
    <zorder>line</zorder>
    <zorder>label_3</zorder>
+   <zorder>textLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

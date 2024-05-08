@@ -37,7 +37,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     int i = 1;
     for (QPushButton* button : buttons) {
-        //button->setText(QString::number(i));
+        button->setText(QString::number(i));
+        button->setStyleSheet("background-image: url(:/m/letter.png); background-repeat: no-repeat; background-position: center; font-size: 15px; text-align: bottom;");
+
         Letter *letter = new Letter(button, values[i]);
         connect(button, &QPushButton::clicked, [this, letter](bool) {this->onAnswerPressed(letter);});
         i++;
@@ -60,6 +62,14 @@ void MainWindow::onAnswerPressed(Letter* letter)
 void MainWindow::onAcceptPressed()
 {
     if(Letter::pick_amount == 5){
-        cout << "udalo ci sie wybrac disu" << endl;
+        textLabelDisplay("Udalo ci sie wybrac disu");
+    }else if(Letter::pick_amount < 5){
+        textLabelDisplay("Trzeba wybrac dokladnie 5 kopert!");
     }
+}
+
+void MainWindow::textLabelDisplay(string name)
+{
+    ui->textLabel->setText(QString::fromStdString(name));
+    ui->textLabel->setWordWrap(true);
 }
