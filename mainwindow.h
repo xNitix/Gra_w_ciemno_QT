@@ -24,6 +24,8 @@ public slots:
     void textLabelDisplay(std::string text);
 
 private:
+    std::vector<Letter*> letters;
+    std::vector<Letter*> picked_letters;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

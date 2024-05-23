@@ -63,8 +63,10 @@ void MainWindow::onAcceptPressed()
 {
     if(Letter::pick_amount == 5){
         textLabelDisplay("Udalo ci sie wybrac disu");
+        ui->stackedWidget->setCurrentIndex(1);
     }else if(Letter::pick_amount < 5){
         textLabelDisplay("Trzeba wybrac dokladnie 5 kopert!");
+
     }
 }
 
