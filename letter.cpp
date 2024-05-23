@@ -3,11 +3,12 @@
 
 int Letter::pick_amount = 0;
 
-Letter::Letter(QPushButton *button, int value)
+Letter::Letter(QPushButton *button, int value, const std::string& data_to_question)
 {
     this->button = button;
     this->value = value;
     this->is_pressed = false;
+    this->question = Question(data_to_question);
 }
 
 void Letter::changeIcon()
@@ -34,6 +35,11 @@ void Letter::handler()
 
 int Letter::get_value()
 {
-    std::cout << "jd " << button->text().toStdString() << " jd" <<  std::endl;
+    std::cout << "Wartosc " << button->text().toStdString() << std::endl;
     return this->value;
+}
+
+int Letter::getIs_pressed() const
+{
+    return is_pressed;
 }

@@ -266,6 +266,12 @@
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
+		],
+		[
+			"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/question.h",
+			"MU",
+			"EWIEGA46WW/moc_question.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -347,6 +353,11 @@
 		[ "C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/main.cpp", "MU", null ],
 		[
 			"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/question.cpp",
 			"MU",
 			null
 		]

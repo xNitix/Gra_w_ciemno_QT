@@ -5,5 +5,7 @@
         <file>background1.jpg</file>
         <file>chlop.png</file>
         <file>tlo2.jpg</file>
+        <file>pytania.txt</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

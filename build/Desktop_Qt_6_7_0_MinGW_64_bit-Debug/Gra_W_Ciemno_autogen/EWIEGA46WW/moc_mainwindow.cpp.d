@@ -351,4 +351,5 @@ C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/build/Desktop_Qt_6_7_0_MinGW_64_bi
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
-  C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter.h
+  C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter.h \
+  C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/question.h

@@ -18,12 +18,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 public slots:
     void onAnswerPressed(Letter* letter);
     void onAcceptPressed();
     void textLabelDisplay(std::string text);
 
 private:
+    void init_picked_letters();
     std::vector<Letter*> letters;
     std::vector<Letter*> picked_letters;
     Ui::MainWindow *ui;

@@ -3,6 +3,10 @@
 #include "letter.h"
 #include <iostream>
 #include <random>
+#include <fstream>
+
+#include <QFile>
+#include <QTextStream>
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -24,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->acceptLetters, &QPushButton::clicked, [this](bool) {this->onAcceptPressed();});
 
-    vector<Letter*> letters;
     vector<int> values = {100000,100000,-100,-100,-50,-50,50000,50000,10000,10000,5000,5000,2000,2000,
                       1000,1000,500,500,200,200,100,100,0,0,500,500,666};
     random_device rng;
@@ -35,17 +38,26 @@ MainWindow::MainWindow(QWidget *parent)
         cout << val << endl;
     }
 
-    int i = 1;
-    for (QPushButton* button : buttons) {
-        button->setText(QString::number(i));
-        button->setStyleSheet("background-image: url(:/m/letter.png); background-repeat: no-repeat; background-position: center; font-size: 15px; text-align: bottom;");
 
-        Letter *letter = new Letter(button, values[i]);
-        connect(button, &QPushButton::clicked, [this, letter](bool) {this->onAnswerPressed(letter);});
-        i++;
-        letters.push_back(letter);
+    QFile file(":/m/pytania.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Nie można otworzyć pliku!";
     }
+    else {
+        int i = 1;
+        QTextStream in(&file);
+        QString  line;
+        for (QPushButton* button : buttons) {
+            button->setText(QString::number(i));
+            button->setStyleSheet("background-image: url(:/m/letter.png); background-repeat: no-repeat; background-position: center; font-size: 15px; text-align: bottom;");
 
+            line = in.readLine();
+            Letter *letter = new Letter(button, values[i],  line.toStdString());
+            connect(button, &QPushButton::clicked, [this, letter](bool) {this->onAnswerPressed(letter);});
+            i++;
+            this->letters.push_back(letter);
+        }
+    }
 }
 
 MainWindow::~MainWindow()
@@ -63,7 +75,9 @@ void MainWindow::onAcceptPressed()
 {
     if(Letter::pick_amount == 5){
         textLabelDisplay("Udalo ci sie wybrac disu");
+        init_picked_letters();
         ui->stackedWidget->setCurrentIndex(1);
+
     }else if(Letter::pick_amount < 5){
         textLabelDisplay("Trzeba wybrac dokladnie 5 kopert!");
 
@@ -74,4 +88,13 @@ void MainWindow::textLabelDisplay(string name)
 {
     ui->textLabel->setText(QString::fromStdString(name));
     ui->textLabel->setWordWrap(true);
+}
+
+void MainWindow::init_picked_letters()
+{
+    for(Letter* letter: letters){
+        if(letter->getIs_pressed()){
+            picked_letters.push_back(letter);
+        }
+    }
 }
