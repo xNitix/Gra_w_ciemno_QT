@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "letter.h"
+#include "qlabel.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -23,8 +24,6 @@ public slots:
     void onAnswerPressed(Letter* letter);
     void onAcceptPressed();
     void textLabelDisplay(std::string text);
-
-private slots:
     void on_pushButton_B_clicked();
     void on_pushButton_A_clicked();
     void on_pushButton_C_clicked();
@@ -38,7 +37,9 @@ private:
     void setQuestion();
     void isCorrectAnswer(Letter* letter, std::string buttonLetter);
     void showAnswer(bool win, Letter* letter);
+    void connectAnswersButtons();
     int questionIndex = 0;
     bool buttonsBlockade = false;
+    void lettersUI(Letter* letter, QLabel* qLabel);
 };
 #endif // MAINWINDOW_H

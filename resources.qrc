@@ -6,6 +6,8 @@
         <file>chlop.png</file>
         <file>tlo2.jpg</file>
         <file>pytania.txt</file>
+        <file>letter_red.png</file>
+        <file>letter_green.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

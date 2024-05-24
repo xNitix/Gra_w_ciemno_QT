@@ -3,11 +3,13 @@
 #include "letter.h"
 #include <iostream>
 #include <random>
-#include <fstream>
 #include <windows.h>
 #include <QFile>
 #include <QTextStream>
 #include <string>
+#include <QTimer>
+#include <QPainter>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -53,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
             button->setStyleSheet("background-image: url(:/m/letter.png); background-repeat: no-repeat; background-position: center; font-size: 15px; text-align: bottom;");
 
             line = in.readLine();
-            Letter *letter = new Letter(button, values[i],  line.toStdString());
+            Letter *letter = new Letter(button, values[i],  line.toStdString(), i);
             connect(button, &QPushButton::clicked, [this, letter](bool) {this->onAnswerPressed(letter);});
             i++;
             this->letters.push_back(letter);
@@ -110,59 +112,101 @@ void MainWindow::setQuestion(){
     + "D: " + picked_letters[questionIndex]->getQuestion().answer_map["D"] + " \n" ;
     ui->question->setText(QString::fromStdString(line));
     ui->question->setWordWrap(true);
+
+    lettersUI(picked_letters[(0 + questionIndex)%5], ui->picked_letter);
+    lettersUI(picked_letters[(1 + questionIndex)%5], ui->letter1);
+    lettersUI(picked_letters[(2 + questionIndex)%5], ui->letter2);
+    lettersUI(picked_letters[(3 + questionIndex)%5], ui->letter3);
+    lettersUI(picked_letters[(4 + questionIndex)%5], ui->letter4);
+
     questionIndex++;
+    buttonsBlockade = false;
     if(questionIndex == 5){
-        questionIndex = 0;
+        questionIndex = 1;
     }
+}
+
+void MainWindow::lettersUI(Letter* letter, QLabel* qLabel){
+    QPixmap originalPixmap;
+    if(letter->getWin() == 1){
+        originalPixmap = QPixmap(":/m/letter_green.png");
+    } else if(letter->getWin() == 0) {
+        originalPixmap = QPixmap(":/m/letter_red.png");
+    } else {
+        originalPixmap = QPixmap(":/m/letter.png");
+    }
+    QFont font;
+    font.setPointSize(45);
+    QPainter painter(&originalPixmap);
+    painter.setFont(font);
+    QRect textRect(0, 0, originalPixmap.width(), originalPixmap.height());
+    string text = std::to_string(letter->getNr());
+    painter.drawText(textRect, Qt::AlignCenter | Qt::AlignBottom, QString::fromStdString(text));
+    qLabel->setPixmap(originalPixmap);
 }
 
 
 
 void MainWindow::isCorrectAnswer(Letter* letter, string buttonLetter){
+    cout << "przedpotomkiem";
     bool win = false;
     if(letter->getQuestion().getCorrect_answer() == buttonLetter){
         letter->setWin();
         win = true;
+    } else {
+        letter->setLose();
     }
+    cout << "potomek wizisiz mnie";
     showAnswer(win, letter);
-    setQuestion();
-
 }
 
 void MainWindow::showAnswer(bool win, Letter* letter){
     ui->question->setText(QString::fromStdString("Twoja odpowiedz jest: ..."));
-    Sleep(1000);
-    if(win){
-        ui->question->setText(QString::fromStdString("Prawidlowa! Mozesz zachowac swoja koperte!"));
-    } else {
-        ui->question->setText(QString::fromStdString("Niepoprawna! Prawidlowa odpowiedz to: " +
-            letter->getQuestion().getCorrect_answer()) + " - niestety tracisz swoja koperte!");
-    }
-    Sleep(1000);
+    ui->question->setWordWrap(true);
+    QTimer::singleShot(2000, this, [this, win, letter]() {
+        if(win){
+            ui->question->setText(QString::fromStdString("Prawidlowa! Mozesz zachowac swoja koperte!"));
+            ui->question->setWordWrap(true);
+        } else {
+            ui->question->setText(QString::fromStdString("Niepoprawna! Prawidlowa odpowiedz to: " +
+                letter->getQuestion().getCorrect_answer()) + " - niestety tracisz swoja koperte!");
+            ui->question->setWordWrap(true);
+        }
+        QTimer::singleShot(2000, this, [this, win, letter]() {
+            setQuestion();
+        });
+    });
 }
 
 void MainWindow::on_pushButton_A_clicked()
 {
-    //if(!buttonsBlockade)
-    cout << "wizisz mnie";
-    isCorrectAnswer(picked_letters[questionIndex - 1], "A");
+    if(!buttonsBlockade){
+        buttonsBlockade = true;
+        isCorrectAnswer(picked_letters[questionIndex - 1], "A");
+    }
 }
 
 void MainWindow::on_pushButton_B_clicked()
 {
-    if(!buttonsBlockade)
+    if(!buttonsBlockade){
+        buttonsBlockade = true;
         isCorrectAnswer(picked_letters[questionIndex - 1], "B");
+    }
 }
 
 void MainWindow::on_pushButton_C_clicked()
 {
-    if(!buttonsBlockade)
+    if(!buttonsBlockade){
+        buttonsBlockade = true;
         isCorrectAnswer(picked_letters[questionIndex - 1], "C");
+    }
 }
 
 void MainWindow::on_pushButton_D_clicked()
 {
-    if(!buttonsBlockade)
+    if(!buttonsBlockade){
+        buttonsBlockade = true;
         isCorrectAnswer(picked_letters[questionIndex - 1], "D");
+    }
 }
 
