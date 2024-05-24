@@ -37,6 +37,8 @@ private:
     Ui::MainWindow *ui;
     void setQuestion();
     void isCorrectAnswer(Letter* letter, std::string buttonLetter);
+    void showAnswer(bool win, Letter* letter);
     int questionIndex = 0;
+    bool buttonsBlockade = false;
 };
 #endif // MAINWINDOW_H

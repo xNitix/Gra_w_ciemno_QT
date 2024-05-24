@@ -119,29 +119,50 @@ void MainWindow::setQuestion(){
 
 
 void MainWindow::isCorrectAnswer(Letter* letter, string buttonLetter){
+    bool win = false;
     if(letter->getQuestion().getCorrect_answer() == buttonLetter){
         letter->setWin();
+        win = true;
     }
+    showAnswer(win, letter);
     setQuestion();
+
+}
+
+void MainWindow::showAnswer(bool win, Letter* letter){
+    ui->question->setText(QString::fromStdString("Twoja odpowiedz jest: ..."));
+    Sleep(1000);
+    if(win){
+        ui->question->setText(QString::fromStdString("Prawidlowa! Mozesz zachowac swoja koperte!"));
+    } else {
+        ui->question->setText(QString::fromStdString("Niepoprawna! Prawidlowa odpowiedz to: " +
+            letter->getQuestion().getCorrect_answer()) + " - niestety tracisz swoja koperte!");
+    }
+    Sleep(1000);
 }
 
 void MainWindow::on_pushButton_A_clicked()
 {
+    //if(!buttonsBlockade)
+    cout << "wizisz mnie";
     isCorrectAnswer(picked_letters[questionIndex - 1], "A");
 }
 
 void MainWindow::on_pushButton_B_clicked()
 {
-    isCorrectAnswer(picked_letters[questionIndex - 1], "B");
+    if(!buttonsBlockade)
+        isCorrectAnswer(picked_letters[questionIndex - 1], "B");
 }
 
 void MainWindow::on_pushButton_C_clicked()
 {
-    isCorrectAnswer(picked_letters[questionIndex - 1], "C");
+    if(!buttonsBlockade)
+        isCorrectAnswer(picked_letters[questionIndex - 1], "C");
 }
 
 void MainWindow::on_pushButton_D_clicked()
 {
-    isCorrectAnswer(picked_letters[questionIndex - 1], "D");
+    if(!buttonsBlockade)
+        isCorrectAnswer(picked_letters[questionIndex - 1], "D");
 }
 
