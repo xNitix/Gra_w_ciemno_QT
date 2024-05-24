@@ -4,9 +4,10 @@
 #include <iostream>
 #include <random>
 #include <fstream>
-
+#include <windows.h>
 #include <QFile>
 #include <QTextStream>
+#include <string>
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -77,6 +78,7 @@ void MainWindow::onAcceptPressed()
         textLabelDisplay("Udalo ci sie wybrac disu");
         init_picked_letters();
         ui->stackedWidget->setCurrentIndex(1);
+        setQuestion();
 
     }else if(Letter::pick_amount < 5){
         textLabelDisplay("Trzeba wybrac dokladnie 5 kopert!");
@@ -98,3 +100,48 @@ void MainWindow::init_picked_letters()
         }
     }
 }
+
+void MainWindow::setQuestion(){
+    ui->question->setText(QString::fromStdString(picked_letters[questionIndex]->getQuestion().getContent()));
+    string line = picked_letters[questionIndex]->getQuestion().getContent() + " \n" +
+    + "A: " + picked_letters[questionIndex]->getQuestion().answer_map["A"] + " \n" +
+    + "B: " + picked_letters[questionIndex]->getQuestion().answer_map["B"] + " \n" +
+    + "C: " + picked_letters[questionIndex]->getQuestion().answer_map["C"] + " \n" +
+    + "D: " + picked_letters[questionIndex]->getQuestion().answer_map["D"] + " \n" ;
+    ui->question->setText(QString::fromStdString(line));
+    ui->question->setWordWrap(true);
+    questionIndex++;
+    if(questionIndex == 5){
+        questionIndex = 0;
+    }
+}
+
+
+
+void MainWindow::isCorrectAnswer(Letter* letter, string buttonLetter){
+    if(letter->getQuestion().getCorrect_answer() == buttonLetter){
+        letter->setWin();
+    }
+    setQuestion();
+}
+
+void MainWindow::on_pushButton_A_clicked()
+{
+    isCorrectAnswer(picked_letters[questionIndex - 1], "A");
+}
+
+void MainWindow::on_pushButton_B_clicked()
+{
+    isCorrectAnswer(picked_letters[questionIndex - 1], "B");
+}
+
+void MainWindow::on_pushButton_C_clicked()
+{
+    isCorrectAnswer(picked_letters[questionIndex - 1], "C");
+}
+
+void MainWindow::on_pushButton_D_clicked()
+{
+    isCorrectAnswer(picked_letters[questionIndex - 1], "D");
+}
+

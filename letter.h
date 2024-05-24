@@ -14,12 +14,15 @@ private:
     int is_pressed;
     QPushButton* button;
     Question question;
+    bool isWon = false;
 
 public:
     Letter(QPushButton* button, int value, const std::string& data_to_question);
     void handler();
     int get_value();
     int getIs_pressed() const;
+    void setWin();
+    Question getQuestion() const;
 
 private:
     void changeIcon();

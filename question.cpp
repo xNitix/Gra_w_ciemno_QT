@@ -4,6 +4,21 @@
 
 Question::Question() {}
 
+std::string Question::getNumber() const
+{
+    return number;
+}
+
+std::string Question::getContent() const
+{
+    return content;
+}
+
+std::string Question::getCorrect_answer() const
+{
+    return correct_answer;
+}
+
 void Question::parse_data(std::string line)
 {
     std::vector<std::string> result = split(line, ';');

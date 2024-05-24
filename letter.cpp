@@ -43,3 +43,14 @@ int Letter::getIs_pressed() const
 {
     return is_pressed;
 }
+
+void Letter::setWin()
+{
+    this->isWon = true;
+}
+
+
+Question Letter::getQuestion() const
+{
+    return question;
+}
