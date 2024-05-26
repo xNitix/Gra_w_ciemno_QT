@@ -104,36 +104,41 @@ void MainWindow::init_picked_letters()
 }
 
 void MainWindow::setQuestion(){
-    ui->question->setText(QString::fromStdString(picked_letters[questionIndex]->getQuestion().getContent()));
-    string line = picked_letters[questionIndex]->getQuestion().getContent() + " \n" +
-    + "A: " + picked_letters[questionIndex]->getQuestion().answer_map["A"] + " \n" +
-    + "B: " + picked_letters[questionIndex]->getQuestion().answer_map["B"] + " \n" +
-    + "C: " + picked_letters[questionIndex]->getQuestion().answer_map["C"] + " \n" +
-    + "D: " + picked_letters[questionIndex]->getQuestion().answer_map["D"] + " \n" ;
+    ui->question->setText(QString::fromStdString(picked_letters[questionIndex%5]->getQuestion().getContent()));
+    string line = picked_letters[questionIndex%5]->getQuestion().getContent() + " \n" +
+    + "A: " + picked_letters[questionIndex%5]->getQuestion().answer_map["A"] + " \n" +
+    + "B: " + picked_letters[questionIndex%5]->getQuestion().answer_map["B"] + " \n" +
+    + "C: " + picked_letters[questionIndex%5]->getQuestion().answer_map["C"] + " \n" +
+    + "D: " + picked_letters[questionIndex%5]->getQuestion().answer_map["D"] + " \n" ;
     ui->question->setText(QString::fromStdString(line));
     ui->question->setWordWrap(true);
 
+    paintLettersColors();
+
+    buttonsBlockade = false;
+    questionIndex++;
+}
+
+void MainWindow::paintLettersColors(){
     lettersUI(picked_letters[(0 + questionIndex)%5], ui->picked_letter);
     lettersUI(picked_letters[(1 + questionIndex)%5], ui->letter1);
     lettersUI(picked_letters[(2 + questionIndex)%5], ui->letter2);
     lettersUI(picked_letters[(3 + questionIndex)%5], ui->letter3);
     lettersUI(picked_letters[(4 + questionIndex)%5], ui->letter4);
-
-    questionIndex++;
-    buttonsBlockade = false;
-    if(questionIndex == 5){
-        questionIndex = 1;
-    }
 }
 
 void MainWindow::lettersUI(Letter* letter, QLabel* qLabel){
     QPixmap originalPixmap;
+    std::cout<<"przed " << questionIndex<<endl;
     if(letter->getWin() == 1){
         originalPixmap = QPixmap(":/m/letter_green.png");
+        cout<<"zmiana na zielone"<<endl;
     } else if(letter->getWin() == 0) {
         originalPixmap = QPixmap(":/m/letter_red.png");
+        cout<<"zmiana na czerwone"<<endl;
     } else {
         originalPixmap = QPixmap(":/m/letter.png");
+        cout<<"oryginal"<<endl;
     }
     QFont font;
     font.setPointSize(45);
@@ -148,7 +153,6 @@ void MainWindow::lettersUI(Letter* letter, QLabel* qLabel){
 
 
 void MainWindow::isCorrectAnswer(Letter* letter, string buttonLetter){
-    cout << "przedpotomkiem";
     bool win = false;
     if(letter->getQuestion().getCorrect_answer() == buttonLetter){
         letter->setWin();
@@ -156,14 +160,13 @@ void MainWindow::isCorrectAnswer(Letter* letter, string buttonLetter){
     } else {
         letter->setLose();
     }
-    cout << "potomek wizisiz mnie";
     showAnswer(win, letter);
 }
 
 void MainWindow::showAnswer(bool win, Letter* letter){
     ui->question->setText(QString::fromStdString("Twoja odpowiedz jest: ..."));
     ui->question->setWordWrap(true);
-    QTimer::singleShot(2000, this, [this, win, letter]() {
+    QTimer::singleShot(timeToWait, this, [this, win, letter]() {
         if(win){
             ui->question->setText(QString::fromStdString("Prawidlowa! Mozesz zachowac swoja koperte!"));
             ui->question->setWordWrap(true);
@@ -172,10 +175,38 @@ void MainWindow::showAnswer(bool win, Letter* letter){
                 letter->getQuestion().getCorrect_answer()) + " - niestety tracisz swoja koperte!");
             ui->question->setWordWrap(true);
         }
-        QTimer::singleShot(2000, this, [this, win, letter]() {
-            setQuestion();
-        });
+        if(questionIndex < 5){
+            QTimer::singleShot(timeToWait, this, [this, win, letter]() {
+                setQuestion();
+            });
+        }
+        else{
+            paintLettersColors();
+            QTimer::singleShot(timeToWait, this, [this, win, letter]() {
+                int correct_answears = countGoodAnswers();
+                if (correct_answears > 0){
+                    ui->question->setText(QString::fromStdString("Koniec fazy pytan! \nUdalo ci sie zdobyc\n " + std::to_string(correct_answears) + "/5 kopert!"));
+                    QTimer::singleShot(timeToWait, this, [this, win, letter]() {
+                        ui->stackedWidget->setCurrentIndex(2);
+                    });
+
+                }
+                else{
+                    ui->question->setText(QString::fromStdString("Koniec gry!\nPocwicz umiejetnosci c++!"));
+                }
+
+            });
+        }
+
     });
+}
+
+int MainWindow::countGoodAnswers(){
+    int res=0;
+    for(Letter* letter : picked_letters){
+        res += letter->getWin();
+    }
+    return res;
 }
 
 void MainWindow::on_pushButton_A_clicked()

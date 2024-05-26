@@ -208,7 +208,7 @@ build Gra_W_Ciemno_autogen/timestamp Gra_W_Ciemno_autogen/mocs_compilation.cpp |
 #############################################
 # Custom command for Gra_W_Ciemno_autogen\EWIEGA46WW\qrc_resources.cpp
 
-build Gra_W_Ciemno_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}Gra_W_Ciemno_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/resources.qrc CMakeFiles/Gra_W_Ciemno_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/background1.jpg C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_picked.png C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/pytania.txt C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/tlo2.jpg C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/chlop.png C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter.png C$:/Qt/6.7.0/mingw_64/./bin/rcc.exe || Gra_W_Ciemno_autogen Gra_W_Ciemno_autogen_timestamp_deps
+build Gra_W_Ciemno_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}Gra_W_Ciemno_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/resources.qrc CMakeFiles/Gra_W_Ciemno_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/background1.jpg C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_picked.png C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/pytania.txt C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_red.png C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/tlo2.jpg C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/chlop.png C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter.png C$:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_green.png C$:/Qt/6.7.0/mingw_64/./bin/rcc.exe || Gra_W_Ciemno_autogen Gra_W_Ciemno_autogen_timestamp_deps
   COMMAND = cmd.exe /C "cd /D C:\Users\Mateusz\Desktop\REPO\Gra_w_ciemno_QT\build\Desktop_Qt_6_7_0_MinGW_64_bit-Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Gra_W_Ciemno_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json Debug"
   DESC = Automatic RCC for resources.qrc
   restat = 1
@@ -217,7 +217,7 @@ build Gra_W_Ciemno_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}
 #############################################
 # Phony custom command for CMakeFiles\Gra_W_Ciemno_autogen_timestamp_deps
 
-build CMakeFiles/Gra_W_Ciemno_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Gra_W_Ciemno_autogen_timestamp_deps: phony C$:/Qt/6.7.0/mingw_64/./bin/uic.exe C$:/Qt/6.7.0/mingw_64/./bin/moc.exe C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a
+build CMakeFiles/Gra_W_Ciemno_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Gra_W_Ciemno_autogen_timestamp_deps: phony C$:/Qt/6.7.0/mingw_64/./bin/moc.exe C$:/Qt/6.7.0/mingw_64/./bin/uic.exe C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a
 
 
 #############################################

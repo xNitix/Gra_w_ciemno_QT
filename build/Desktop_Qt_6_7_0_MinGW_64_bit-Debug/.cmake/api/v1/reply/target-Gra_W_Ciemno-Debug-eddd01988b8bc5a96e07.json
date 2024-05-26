@@ -374,11 +374,11 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "Gra_W_Ciemno_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "Gra_W_Ciemno_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "Gra_W_Ciemno_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "Gra_W_Ciemno::@6890427a1f51a3e7e1df",

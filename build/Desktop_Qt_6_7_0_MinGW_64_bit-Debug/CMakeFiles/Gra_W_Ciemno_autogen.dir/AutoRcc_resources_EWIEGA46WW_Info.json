@@ -10,9 +10,11 @@
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/background1.jpg",
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_picked.png",
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/pytania.txt",
+		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_red.png",
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/tlo2.jpg",
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/chlop.png",
-		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter.png"
+		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter.png",
+		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_green.png"
 	],
 	"LOCK_FILE" : "C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Gra_W_Ciemno_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,

@@ -30,6 +30,8 @@ public slots:
     void on_pushButton_D_clicked();
 
 private:
+    int timeToWait = 500;
+
     void init_picked_letters();
     std::vector<Letter*> letters;
     std::vector<Letter*> picked_letters;
@@ -41,5 +43,7 @@ private:
     int questionIndex = 0;
     bool buttonsBlockade = false;
     void lettersUI(Letter* letter, QLabel* qLabel);
+    void paintLettersColors();
+    int countGoodAnswers();
 };
 #endif // MAINWINDOW_H
