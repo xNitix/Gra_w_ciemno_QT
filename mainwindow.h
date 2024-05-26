@@ -57,6 +57,12 @@ private slots:
 
     void on_butt5_released();
 
+    void on_spinBox_valueChanged(int arg1);
+
+    void on_spinBox_textChanged(const QString &arg1);
+
+    void on_spinBox_editingFinished();
+
 private:
     int timeToWait = 50;
     Trade* trade = new Trade();

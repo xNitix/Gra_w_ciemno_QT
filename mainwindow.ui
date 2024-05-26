@@ -15,7 +15,7 @@
   </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="centralwidget">
     <widget class="QPushButton" name="pushButton">
@@ -1128,6 +1128,9 @@
        <width>341</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="correctionMode">
+      <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
      </property>
      <property name="maximum">
       <number>500000</number>

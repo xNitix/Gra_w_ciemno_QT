@@ -69,10 +69,16 @@ void Trade::print_picked_letters()
     " letter3: " + std::to_string(letter3) +
     " letter4: " + std::to_string(letter4) +
     " letter5: " + std::to_string(letter5) << std::endl;
+    std::cout << "trade price: " + std::to_string(trade_price) << std::endl;
 }
 
 void Trade::set_player_letters(std::vector<Letter *> player_Letters)
 {
     this->player_Letters = player_Letters;
+}
+
+void Trade::set_trade_price(int price)
+{
+    this->trade_price = price;
 }
 

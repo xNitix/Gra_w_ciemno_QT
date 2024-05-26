@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     };
 
     connect(ui->acceptLetters, &QPushButton::clicked, [this](bool) {this->onAcceptPressed();});
+    //connect(ui->spinBox, &QSpinBox::valueChanged, this {this->on_spinBox_valueChanged(value);});
 
     vector<int> values = {100000,100000,-100,-100,-50,-50,50000,50000,10000,10000,5000,5000,2000,2000,
                       1000,1000,500,500,200,200,100,100,0,0,500,500,666};
@@ -368,5 +369,54 @@ void MainWindow::on_butt5_pressed()
 void MainWindow::on_pushButton_sell_clicked()
 {
     trade->print_picked_letters();
+    trade->set_trade_price(ui->spinBox->value());
+}
+
+
+void MainWindow::on_spinBox_valueChanged(int arg1)
+{
+    trade->set_trade_price(ui->spinBox->value());
+}
+
+
+void MainWindow::on_spinBox_textChanged(const QString &arg1)
+{
+    //on_pushButton_sell_clicked();
+}
+
+
+void MainWindow::on_spinBox_editingFinished()
+{
+    //on_pushButton_sell_clicked();
+}
+
+
+void MainWindow::on_butt1_released()
+{
+
+}
+
+
+void MainWindow::on_butt2_released()
+{
+
+}
+
+
+void MainWindow::on_butt3_released()
+{
+
+}
+
+
+void MainWindow::on_butt4_released()
+{
+
+}
+
+
+void MainWindow::on_butt5_released()
+{
+
 }
 
