@@ -71,7 +71,6 @@ MainWindow::~MainWindow()
 void MainWindow::onAnswerPressed(Letter* letter)
 {
     letter->handler();
-    cout << letter->get_value() << endl;
 }
 
 void MainWindow::onAcceptPressed()
@@ -129,16 +128,12 @@ void MainWindow::paintLettersColors(){
 
 void MainWindow::lettersUI(Letter* letter, QLabel* qLabel){
     QPixmap originalPixmap;
-    std::cout<<"przed " << questionIndex<<endl;
     if(letter->getWin() == 1){
         originalPixmap = QPixmap(":/m/letter_green.png");
-        cout<<"zmiana na zielone"<<endl;
     } else if(letter->getWin() == 0) {
         originalPixmap = QPixmap(":/m/letter_red.png");
-        cout<<"zmiana na czerwone"<<endl;
     } else {
         originalPixmap = QPixmap(":/m/letter.png");
-        cout<<"oryginal"<<endl;
     }
     QFont font;
     font.setPointSize(45);
@@ -187,7 +182,7 @@ void MainWindow::showAnswer(bool win, Letter* letter){
                 if (correct_answears > 0){
                     ui->question->setText(QString::fromStdString("Koniec fazy pytan! \nUdalo ci sie zdobyc\n " + std::to_string(correct_answears) + "/5 kopert!"));
                     QTimer::singleShot(timeToWait, this, [this, win, letter]() {
-                        ui->stackedWidget->setCurrentIndex(2);
+                        prepareTradeScreen();
                     });
 
                 }
@@ -207,6 +202,89 @@ int MainWindow::countGoodAnswers(){
         res += letter->getWin();
     }
     return res;
+}
+
+void MainWindow::prepareTradeScreen()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+    setLettersNumbers();
+
+    int lose_amount = 5 - countGoodAnswers();
+    if(lose_amount > 0){
+        lose_amount--;
+        delete ui->my_letter_5;
+    }
+    if(lose_amount > 0){
+        lose_amount--;
+        delete ui->my_letter_4;
+    }
+    if(lose_amount > 0){
+        lose_amount--;
+        delete ui->my_letter_3;
+    }
+    if(lose_amount > 0){
+        lose_amount--;
+        delete ui->my_letter_2;
+    }
+    if(lose_amount > 0){
+        lose_amount--;
+        delete ui->my_letter_1;
+    }
+
+}
+
+void MainWindow::setLettersNumbers()
+{
+    std::vector<Letter*> won_letters;
+    for(Letter* letter : picked_letters){
+        if(letter->getWin() == 1){
+            won_letters.push_back(letter);
+        }
+    }
+
+    int index = 0;
+    if(index < won_letters.size()){
+        drawLettersUITradeMode(won_letters[index], ui->my_letter_1);
+        index++;
+    }
+    if(index < won_letters.size()){
+        drawLettersUITradeMode(won_letters[index], ui->my_letter_2);
+        index++;
+    }
+    if(index < won_letters.size()){
+        drawLettersUITradeMode(won_letters[index], ui->my_letter_3);
+        index++;
+    }
+    if(index < won_letters.size()){
+        drawLettersUITradeMode(won_letters[index], ui->my_letter_4);
+        index++;
+    }
+    if(index < won_letters.size()){
+        drawLettersUITradeMode(won_letters[index], ui->my_letter_5);
+    }
+
+}
+
+
+void MainWindow::drawLettersUITradeMode(Letter* letter, QLabel* qLabel){
+    QPixmap originalPixmap = QPixmap(":/m/letter_90.png");
+    QFont font;
+    font.setPointSize(45);
+    QPainter painter(&originalPixmap);
+    painter.setFont(font);
+    QRect textRect(0, 0, originalPixmap.width(), originalPixmap.height());
+    string text = std::to_string(letter->getNr());
+    painter.drawText(textRect, Qt::AlignCenter | Qt::AlignBottom, QString::fromStdString(text));
+    qLabel->setPixmap(originalPixmap);
+}
+
+void MainWindow::prepareEndScreen()
+{
+    QFont font;
+    font.setPointSize(45);
+    ui->label_win->setFont(font);
+    ui->label_win->setAlignment(Qt::AlignCenter);
+    ui->label_win->setText(QString::fromStdString("Wygrałeś " + std::to_string('0') + " zł!"));
 }
 
 void MainWindow::on_pushButton_A_clicked()
@@ -239,5 +317,12 @@ void MainWindow::on_pushButton_D_clicked()
         buttonsBlockade = true;
         isCorrectAnswer(picked_letters[questionIndex - 1], "D");
     }
+}
+
+
+void MainWindow::on_pushButton_end_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+    prepareEndScreen();
 }
 

@@ -28,9 +28,13 @@ public slots:
     void on_pushButton_A_clicked();
     void on_pushButton_C_clicked();
     void on_pushButton_D_clicked();
+    void on_pushButton_end_clicked();
+
+private slots:
+
 
 private:
-    int timeToWait = 500;
+    int timeToWait = 50;
 
     void init_picked_letters();
     std::vector<Letter*> letters;
@@ -45,5 +49,10 @@ private:
     void lettersUI(Letter* letter, QLabel* qLabel);
     void paintLettersColors();
     int countGoodAnswers();
+    void prepareTradeScreen();
+    void setLettersNumbers();
+    void drawLettersUITradeMode(Letter* letter, QLabel* qLabel);
+    void prepareEndScreen();
+
 };
 #endif // MAINWINDOW_H
