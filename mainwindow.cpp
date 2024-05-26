@@ -9,6 +9,7 @@
 #include <string>
 #include <QTimer>
 #include <QPainter>
+#include "trade.h"
 
 using namespace std;
 
@@ -67,6 +68,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 
 void MainWindow::onAnswerPressed(Letter* letter)
 {
@@ -213,24 +215,30 @@ void MainWindow::prepareTradeScreen()
     if(lose_amount > 0){
         lose_amount--;
         delete ui->my_letter_5;
+        delete ui->butt5;
     }
     if(lose_amount > 0){
         lose_amount--;
         delete ui->my_letter_4;
+        delete ui->butt4;
     }
     if(lose_amount > 0){
         lose_amount--;
         delete ui->my_letter_3;
+        delete ui->butt3;
     }
     if(lose_amount > 0){
         lose_amount--;
         delete ui->my_letter_2;
+        delete ui->butt2;
     }
     if(lose_amount > 0){
         lose_amount--;
         delete ui->my_letter_1;
+        delete ui->butt1;
     }
 
+    this->trade->set_player_letters(picked_letters);
 }
 
 void MainWindow::setLettersNumbers()
@@ -324,5 +332,41 @@ void MainWindow::on_pushButton_end_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
     prepareEndScreen();
+}
+
+
+void MainWindow::on_butt1_pressed()
+{
+    trade->letter1 = !trade->letter1;
+}
+
+
+void MainWindow::on_butt2_pressed()
+{
+    trade->letter2 = !trade->letter2;
+}
+
+
+void MainWindow::on_butt3_pressed()
+{
+    trade->letter3 = !trade->letter3;
+}
+
+
+void MainWindow::on_butt4_pressed()
+{
+    trade->letter4 = !trade->letter4;
+}
+
+
+void MainWindow::on_butt5_pressed()
+{
+    trade->letter5 = !trade->letter5;
+}
+
+
+void MainWindow::on_pushButton_sell_clicked()
+{
+    trade->print_picked_letters();
 }
 

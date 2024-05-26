@@ -1120,6 +1120,102 @@
       <string>Zakończ grę</string>
      </property>
     </widget>
+    <widget class="QSpinBox" name="spinBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>200</y>
+       <width>341</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>500000</number>
+     </property>
+     <property name="singleStep">
+      <number>1000</number>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="butt1">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>130</y>
+       <width>16</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="butt2">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>130</y>
+       <width>16</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="butt3">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>130</y>
+       <width>21</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="butt4">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>130</y>
+       <width>16</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="butt5">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>130</y>
+       <width>16</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="autoExclusive">
+      <bool>false</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="page4">
     <widget class="QLabel" name="background_4">

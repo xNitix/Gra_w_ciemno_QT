@@ -4,6 +4,7 @@
 #include "letter.h"
 #include "qlabel.h"
 #include <QMainWindow>
+#include "trade.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void setTradeCeter(Trade trade);
 
 
 public slots:
@@ -33,9 +35,31 @@ public slots:
 private slots:
 
 
+    void on_butt1_pressed();
+
+    void on_butt2_pressed();
+
+    void on_butt3_pressed();
+
+    void on_butt4_pressed();
+
+    void on_butt5_pressed();
+
+    void on_pushButton_sell_clicked();
+
+    void on_butt3_released();
+
+    void on_butt1_released();
+
+    void on_butt2_released();
+
+    void on_butt4_released();
+
+    void on_butt5_released();
+
 private:
     int timeToWait = 50;
-
+    Trade* trade = new Trade();
     void init_picked_letters();
     std::vector<Letter*> letters;
     std::vector<Letter*> picked_letters;

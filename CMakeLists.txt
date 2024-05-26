@@ -28,6 +28,7 @@ qt_add_executable(Gra_W_Ciemno
         resources.qrc
         letter.h letter.cpp
         question.h question.cpp
+        trade.h trade.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Gra_W_Ciemno APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
