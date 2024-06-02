@@ -39,11 +39,6 @@ MainWindow::MainWindow(QWidget *parent)
     mt19937 g(rng());
     shuffle(values.begin(), values.end(), g);
 
-    for(int val : values){
-        cout << val << endl;
-    }
-
-
     QFile file(":/m/pytania.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Nie można otworzyć pliku!";
@@ -239,7 +234,14 @@ void MainWindow::prepareTradeScreen()
         delete ui->butt1;
     }
 
-    this->trade->set_player_letters(picked_letters);
+    std::vector<Letter*> won_letters;
+    for(Letter* letter : picked_letters){
+        if(letter->getWin() == 1){
+            won_letters.push_back(letter);
+        }
+    }
+    this->trade->set_player_letters(won_letters);
+    this->trade->init_letters_map();
 }
 
 void MainWindow::setLettersNumbers()
@@ -338,40 +340,81 @@ void MainWindow::on_pushButton_end_clicked()
 
 void MainWindow::on_butt1_pressed()
 {
-    trade->letter1 = !trade->letter1;
+    trade->chosenLetter[1] = !trade->chosenLetter[1];
 }
 
 
 void MainWindow::on_butt2_pressed()
 {
-    trade->letter2 = !trade->letter2;
+    trade->chosenLetter[2] = !trade->chosenLetter[2];
 }
 
 
 void MainWindow::on_butt3_pressed()
 {
-    trade->letter3 = !trade->letter3;
+    trade->chosenLetter[3] = !trade->chosenLetter[3];
 }
 
 
 void MainWindow::on_butt4_pressed()
 {
-    trade->letter4 = !trade->letter4;
+    trade->chosenLetter[4] = !trade->chosenLetter[4];
 }
 
 
 void MainWindow::on_butt5_pressed()
 {
-    trade->letter5 = !trade->letter5;
+    trade->chosenLetter[5] = !trade->chosenLetter[5];
 }
 
 
 void MainWindow::on_pushButton_sell_clicked()
 {
-    trade->print_picked_letters();
+    vector<Letter*> host_before_trade_letters = trade->getHost_Letters();
     trade->set_trade_price(ui->spinBox->value());
+    trade->start_trade();
+    if(trade->wasTradeAccepted)
+        moveLetterToHostOnScreen(host_before_trade_letters);
 }
 
+void MainWindow::moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade_letters){
+    std::vector<Letter*> host_letters = trade->getHost_Letters();
+    for(Letter* letter : host_letters){
+        bool to_be_changed = true;
+        for(Letter* letter2 : host_before_trade_letters){
+            if(letter->getNr() == letter2->getNr()){
+                to_be_changed = false;
+            }
+        }
+        if(to_be_changed){
+            for (const auto& pair : trade->index_to_letter_number_map) {
+                if (pair.second == letter->getNr()) {
+                    int offset = 430;
+                    if(pair.first == 1){
+                        ui->my_letter_1->move(ui->my_letter_1->x() + offset, ui->my_letter_1->y());
+                        ui->butt1->move(ui->butt1->x() + offset, ui->butt1->y());
+                    }
+                    if(pair.first == 2){
+                        ui->my_letter_2->move(ui->my_letter_2->x() + offset, ui->my_letter_2->y());
+                        ui->butt2->move(ui->butt2->x() + offset, ui->butt2->y());
+                    }
+                    if(pair.first == 3){
+                        ui->my_letter_3->move(ui->my_letter_3->x() + offset, ui->my_letter_3->y());
+                        ui->butt3->move(ui->butt3->x() + offset, ui->butt3->y());
+                    }
+                    if(pair.first == 4){
+                        ui->my_letter_4->move(ui->my_letter_4->x() + offset, ui->my_letter_4->y());
+                        ui->butt4->move(ui->butt4->x() + offset, ui->butt4->y());
+                    }
+                    if(pair.first == 5){
+                        ui->my_letter_5->move(ui->my_letter_5->x() + offset, ui->my_letter_5->y());
+                        ui->butt5->move(ui->butt5->x() + offset, ui->butt5->y());
+                    }
+                }
+            }
+        }
+    }
+}
 
 void MainWindow::on_spinBox_valueChanged(int arg1)
 {
@@ -419,4 +462,3 @@ void MainWindow::on_butt5_released()
 {
 
 }
-

@@ -36,7 +36,6 @@ void Letter::handler()
 
 int Letter::get_value()
 {
-    std::cout << "Wartosc " << button->text().toStdString() << std::endl;
     return this->value;
 }
 

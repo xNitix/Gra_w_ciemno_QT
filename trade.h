@@ -15,15 +15,21 @@ private:
     int target_value;
     bool is_offert_accepted(int price);
     int trade_price;
-    //bool letter1, letter2, letter3, letter4, letter5;
+
 
 public:
+    std::map<int, int> index_to_letter_number_map;
     Trade();
+    bool wasTradeAccepted = false;
     bool player_offer(std::vector<int> letter_to_sell, int price_for_letters);
-    bool letter1 = false, letter2 = false, letter3 = false, letter4 = false, letter5 = false;
-    void print_picked_letters();
+    bool chosenLetter[6] = {false, false, false, false, false, false};
+    void start_trade();
     void set_player_letters(std::vector<Letter*> player_Letters);
     void set_trade_price(int price);
+    void init_letters_map();
+    void move_letters_to_host(std::vector<int> letter_to_sell, int trade_price);
+    std::vector<Letter *> getPlayer_Letters() const;
+    std::vector<Letter *> getHost_Letters() const;
 };
 
 #endif // LETTER_H

@@ -272,6 +272,12 @@
 			"MU",
 			"EWIEGA46WW/moc_question.cpp",
 			null
+		],
+		[
+			"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/trade.h",
+			"MU",
+			"EWIEGA46WW/moc_trade.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -360,7 +366,8 @@
 			"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/question.cpp",
 			"MU",
 			null
-		]
+		],
+		[ "C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/trade.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

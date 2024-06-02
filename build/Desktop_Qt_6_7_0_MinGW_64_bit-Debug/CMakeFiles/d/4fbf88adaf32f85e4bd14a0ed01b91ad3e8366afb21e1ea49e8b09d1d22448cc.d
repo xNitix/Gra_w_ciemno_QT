@@ -538,4 +538,6 @@ Gra_W_Ciemno_autogen/timestamp: \
   C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/mainwindow.ui \
   C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/question.cpp \
   C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/question.h \
-  C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/resources.qrc
+  C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/resources.qrc \
+  C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/trade.cpp \
+  C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/trade.h
