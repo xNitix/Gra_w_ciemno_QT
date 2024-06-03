@@ -8,7 +8,7 @@
 class Trade
 {
 private:
-    int player_money;
+    int player_money = 0;
     std::vector<Letter*> host_Letters;
     int propability();
     std::vector<Letter*> player_Letters;

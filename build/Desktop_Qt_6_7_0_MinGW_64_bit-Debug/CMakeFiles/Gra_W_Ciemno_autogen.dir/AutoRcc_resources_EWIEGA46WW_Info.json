@@ -7,6 +7,8 @@
 	"INCLUDE_DIR" : "C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Gra_W_Ciemno_autogen/include",
 	"INPUTS" : 
 	[
+		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/end_letter_red.png",
+		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/end_letter_green.png",
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/background1.jpg",
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/letter_picked.png",
 		"C:/Users/Mateusz/Desktop/REPO/Gra_w_ciemno_QT/pytania.txt",

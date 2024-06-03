@@ -83,6 +83,7 @@ private:
     void setLettersNumbers();
     void drawLettersUITradeMode(Letter* letter, QLabel* qLabel);
     void prepareEndScreen();
+    void drawEndLetter(int value, int nr, QLabel* qLabel, bool is_green);
     void moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade_letters);
 
 };

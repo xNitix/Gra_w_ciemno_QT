@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-c14bb37fec3389cb0eb9.json",
+					"jsonFile" : "directory-.-Debug-9b820b05e6c6c63267a9.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Gra_W_Ciemno::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Gra_W_Ciemno-Debug-cb7ca6bd120330cbf294.json",
+					"jsonFile" : "target-Gra_W_Ciemno-Debug-31e4e08d6e59e5a7c7ce.json",
 					"name" : "Gra_W_Ciemno",
 					"projectIndex" : 0
 				},

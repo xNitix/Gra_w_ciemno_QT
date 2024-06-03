@@ -31,10 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     };
 
     connect(ui->acceptLetters, &QPushButton::clicked, [this](bool) {this->onAcceptPressed();});
-    //connect(ui->spinBox, &QSpinBox::valueChanged, this {this->on_spinBox_valueChanged(value);});
-
     vector<int> values = {100000,100000,-100,-100,-50,-50,50000,50000,10000,10000,5000,5000,2000,2000,
-                      1000,1000,500,500,200,200,100,100,0,0,500,500,666};
+                      1000,1000,500,500,200,200,100,100,0,0,500,500,2000};
     random_device rng;
     mt19937 g(rng());
     shuffle(values.begin(), values.end(), g);
@@ -74,7 +72,7 @@ void MainWindow::onAnswerPressed(Letter* letter)
 void MainWindow::onAcceptPressed()
 {
     if(Letter::pick_amount == 5){
-        textLabelDisplay("Udalo ci sie wybrac disu");
+        textLabelDisplay("Udalo ci sie wybrac! Pierwszy sukces!");
         init_picked_letters();
         ui->stackedWidget->setCurrentIndex(1);
         setQuestion();
@@ -296,11 +294,98 @@ void MainWindow::prepareEndScreen()
     ui->label_win->setFont(font);
     ui->label_win->setAlignment(Qt::AlignCenter);
     int res = trade->getPlayer_money();
+    int player_letters_amount = trade->getPlayer_Letters().size();
+    int letters_total_amount = player_letters_amount + trade->getHost_Letters().size();
+    std::vector<int> letter_numbers;
+    std::vector<int> letter_values;
     for(Letter* letter : trade->getPlayer_Letters()){
         res += letter->get_value();
+        letter_numbers.push_back(letter->getNr());
+        letter_values.push_back(letter->get_value());
     }
+    for(Letter* letter : trade->getHost_Letters()){
+        letter_numbers.push_back(letter->getNr());
+        letter_values.push_back(letter->get_value());
+    }
+
+    int index = 0;
+    bool is_green = true;
+    if(player_letters_amount >= 0){
+        player_letters_amount--;
+        if(player_letters_amount < 0){
+            is_green = false;
+        }
+    }
+    drawEndLetter(letter_values[index], letter_numbers[index], ui->last_letter1, is_green);
+    index++;
+    if(index > letters_total_amount){delete ui->last_letter1;}
+
+    if(player_letters_amount >= 0){
+        player_letters_amount--;
+        if(player_letters_amount < 0){
+            is_green = false;
+        }
+    }
+    drawEndLetter(letter_values[index], letter_numbers[index], ui->last_letter2, is_green);
+    index++;
+    if(index > letters_total_amount){delete ui->last_letter2;}
+
+    if(player_letters_amount >= 0){
+        player_letters_amount--;
+        if(player_letters_amount < 0){
+            is_green = false;
+        }
+    }
+    drawEndLetter(letter_values[index], letter_numbers[index], ui->last_letter3, is_green);
+    index++;
+    if(index > letters_total_amount){delete ui->last_letter3;}
+
+    if(player_letters_amount >= 0){
+        player_letters_amount--;
+        if(player_letters_amount < 0){
+            is_green = false;
+        }
+    }
+    drawEndLetter(letter_values[index], letter_numbers[index], ui->last_letter4, is_green);
+    index++;
+    if(index > letters_total_amount){delete ui->last_letter4;}
+
+    if(player_letters_amount >= 0){
+        player_letters_amount--;
+        if(player_letters_amount < 0){
+            is_green = false;
+        }
+    }
+    drawEndLetter(letter_values[index], letter_numbers[index], ui->last_letter5, is_green);
+    index++;
+    if(index > letters_total_amount){delete ui->last_letter5;}
+
     string result = "Wygrałeś łącznie: " + to_string(res) + " zł!";
     ui->label_win->setText(QString::fromStdString(result));
+}
+void MainWindow::drawEndLetter(int value, int nr, QLabel* qLabel, bool is_green) {
+    QPixmap originalPixmap = QPixmap(":/end_letter_green.png");
+    if (!is_green) {
+        originalPixmap = QPixmap(":/end_letter_red.png");
+    }
+
+    // Dodajemy tekst na środku u góry obrazka
+    QFont font;
+    font.setPointSize(35);
+    QPainter painter(&originalPixmap);
+    painter.setFont(font);
+
+    // Ustawienia dla tekstu na górze
+    QRect topTextRect(0, 0, originalPixmap.width(), originalPixmap.height() / 2);
+    QString topText = QString::fromStdString(std::to_string(value));
+    painter.drawText(topTextRect, Qt::AlignCenter | Qt::AlignTop, topText);
+
+    // Ustawienia dla tekstu na dole
+    QRect bottomTextRect(0, originalPixmap.height() / 2, originalPixmap.width(), originalPixmap.height() / 2);
+    QString bottomText = QString::fromStdString(std::to_string(nr));
+    painter.drawText(bottomTextRect, Qt::AlignCenter | Qt::AlignBottom, bottomText);
+
+    qLabel->setPixmap(originalPixmap);
 }
 
 void MainWindow::on_pushButton_A_clicked()
