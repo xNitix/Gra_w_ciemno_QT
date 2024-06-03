@@ -1252,11 +1252,17 @@
      <property name="text">
       <string>WYGRALES 100 ZL!!</string>
      </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QLabel" name="ziut">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>120</x>
        <y>350</y>
        <width>581</width>
        <height>461</height>

@@ -13,9 +13,9 @@ private:
     int propability();
     std::vector<Letter*> player_Letters;
     int target_value;
-    bool is_offert_accepted(int price);
+    bool is_offert_accepted(std::vector<int> letter_to_sell, int price_for_letters, int price);
     int trade_price;
-
+    std::vector<std::vector<int>> offerts_history;
 
 public:
     std::map<int, int> index_to_letter_number_map;
@@ -30,6 +30,7 @@ public:
     void move_letters_to_host(std::vector<int> letter_to_sell, int trade_price);
     std::vector<Letter *> getPlayer_Letters() const;
     std::vector<Letter *> getHost_Letters() const;
+    int getPlayer_money() const;
 };
 
 #endif // LETTER_H

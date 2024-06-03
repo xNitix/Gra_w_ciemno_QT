@@ -292,10 +292,15 @@ void MainWindow::drawLettersUITradeMode(Letter* letter, QLabel* qLabel){
 void MainWindow::prepareEndScreen()
 {
     QFont font;
-    font.setPointSize(45);
+    font.setPointSize(38);
     ui->label_win->setFont(font);
     ui->label_win->setAlignment(Qt::AlignCenter);
-    ui->label_win->setText(QString::fromStdString("Wygrałeś " + std::to_string('0') + " zł!"));
+    int res = trade->getPlayer_money();
+    for(Letter* letter : trade->getPlayer_Letters()){
+        res += letter->get_value();
+    }
+    string result = "Wygrałeś łącznie: " + to_string(res) + " zł!";
+    ui->label_win->setText(QString::fromStdString(result));
 }
 
 void MainWindow::on_pushButton_A_clicked()
@@ -392,23 +397,33 @@ void MainWindow::moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade
                     int offset = 430;
                     if(pair.first == 1){
                         ui->my_letter_1->move(ui->my_letter_1->x() + offset, ui->my_letter_1->y());
-                        ui->butt1->move(ui->butt1->x() + offset, ui->butt1->y());
+                        delete ui->butt1;
+                         trade->chosenLetter[1] = false;
+                        //ui->butt1->move(ui->butt1->x() + offset, ui->butt1->y());
                     }
                     if(pair.first == 2){
                         ui->my_letter_2->move(ui->my_letter_2->x() + offset, ui->my_letter_2->y());
-                        ui->butt2->move(ui->butt2->x() + offset, ui->butt2->y());
+                        delete ui->butt2;
+                        trade->chosenLetter[2] = false;
+                        //ui->butt2->move(ui->butt2->x() + offset, ui->butt2->y());
                     }
                     if(pair.first == 3){
                         ui->my_letter_3->move(ui->my_letter_3->x() + offset, ui->my_letter_3->y());
-                        ui->butt3->move(ui->butt3->x() + offset, ui->butt3->y());
+                        delete ui->butt3;
+                         trade->chosenLetter[3] = false;
+                        //ui->butt3->move(ui->butt3->x() + offset, ui->butt3->y());
                     }
                     if(pair.first == 4){
                         ui->my_letter_4->move(ui->my_letter_4->x() + offset, ui->my_letter_4->y());
-                        ui->butt4->move(ui->butt4->x() + offset, ui->butt4->y());
+                        delete ui->butt4;
+                         trade->chosenLetter[4] = false;
+                        //ui->butt4->move(ui->butt4->x() + offset, ui->butt4->y());
                     }
                     if(pair.first == 5){
+                        delete ui->butt5;
+                         trade->chosenLetter[5] = false;
                         ui->my_letter_5->move(ui->my_letter_5->x() + offset, ui->my_letter_5->y());
-                        ui->butt5->move(ui->butt5->x() + offset, ui->butt5->y());
+                        //ui->butt5->move(ui->butt5->x() + offset, ui->butt5->y());
                     }
                 }
             }

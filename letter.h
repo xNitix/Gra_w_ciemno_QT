@@ -27,6 +27,7 @@ public:
     Question getQuestion() const;
     int getWin() const;
     int getNr() const;
+    void repair_value(){value = 0;}
 
 private:
     void changeIcon();
