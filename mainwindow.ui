@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>819</width>
-    <height>826</height>
+    <height>808</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -632,9 +632,13 @@
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>Witaj w grze w ciemno,
-     wybierz 5 kopert, 
-    następnie zatwierdź wybór</string>
+      <string>Witaj w grze w ciemno! Wybierz 5 kopert,             następnie zatwierdź wybór!</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <zorder>label</zorder>
@@ -1279,16 +1283,6 @@
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>819</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <resources>
