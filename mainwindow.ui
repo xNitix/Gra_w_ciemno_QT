@@ -1223,6 +1223,25 @@
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="money">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>290</y>
+       <width>251</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="resources.qrc">:/m/block_of_money.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="page4">
     <widget class="QLabel" name="background_4">

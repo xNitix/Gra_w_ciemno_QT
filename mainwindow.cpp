@@ -271,7 +271,7 @@ void MainWindow::setLettersNumbers()
     if(index < won_letters.size()){
         drawLettersUITradeMode(won_letters[index], ui->my_letter_5);
     }
-
+    ui->money->setVisible(false);
 }
 
 
@@ -285,6 +285,24 @@ void MainWindow::drawLettersUITradeMode(Letter* letter, QLabel* qLabel){
     string text = std::to_string(letter->getNr());
     painter.drawText(textRect, Qt::AlignCenter | Qt::AlignBottom, QString::fromStdString(text));
     qLabel->setPixmap(originalPixmap);
+
+}
+
+void MainWindow::set_and_draw_player_money(){
+    QPixmap originalPixmap = QPixmap(":/m/block_of_money.png");
+    QFont font;
+    font.setPointSize(70);
+    QPainter painter(&originalPixmap);
+    painter.setFont(font);
+    QRect textRect(0, 0, originalPixmap.width(), originalPixmap.height());
+    string text = std::to_string(trade->player_money);
+    painter.save(); // Zapisz bieżący stan malowania
+    painter.translate(textRect.center()); // Przesuń punkt (0,0) do środka prostokąta
+    painter.rotate(-90); // Obróć o 90 stopni w lewo
+    painter.translate(-textRect.center()); // Przesuń punkt (0,0) z powrotem
+    painter.drawText(textRect, Qt::AlignCenter, QString::fromStdString(text));
+    painter.restore();
+    ui->money->setPixmap(originalPixmap);
 }
 
 void MainWindow::prepareEndScreen()
@@ -463,8 +481,15 @@ void MainWindow::on_pushButton_sell_clicked()
     vector<Letter*> host_before_trade_letters = trade->getHost_Letters();
     trade->set_trade_price(ui->spinBox->value());
     trade->start_trade();
-    if(trade->wasTradeAccepted)
+    if(trade->wasTradeAccepted){
         moveLetterToHostOnScreen(host_before_trade_letters);
+        if(trade->player_money!=0){
+            ui->money->setVisible(true);
+            set_and_draw_player_money();
+        } else {
+            ui->money->setVisible(false);
+        }
+    }
 }
 
 void MainWindow::moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade_letters){
@@ -562,3 +587,19 @@ void MainWindow::on_butt5_released()
 {
 
 }
+
+void MainWindow::on_pushButton_offer_clicked()
+{
+    vector<vector<int>> res;
+    res = trade->take_offer();
+
+    for (int i = 0; i < res.size(); i++) {
+        // Iteruj przez wewnętrzny wektor
+        for (int j = 0; j < res[i].size(); j++) {
+            cout << res[i][j] << " ";
+        }
+        cout << endl; // Nowa linia po każdym wewnętrznym wektorze
+    }
+
+}
+

@@ -8,7 +8,6 @@
 class Trade
 {
 private:
-    int player_money = 0;
     std::vector<Letter*> host_Letters;
     int propability();
     std::vector<Letter*> player_Letters;
@@ -18,6 +17,7 @@ private:
     std::vector<std::vector<int>> offerts_history;
 
 public:
+    int player_money = 0;
     std::map<int, int> index_to_letter_number_map;
     Trade();
     bool wasTradeAccepted = false;
@@ -31,6 +31,12 @@ public:
     std::vector<Letter *> getPlayer_Letters() const;
     std::vector<Letter *> getHost_Letters() const;
     int getPlayer_money() const;
+    std::vector<std::vector<int>> take_offer();
+    //std::vector<std::vector<int>> take_new_offer();
+    void generujKombinacje();
+    std::vector<int> letter_give;
+    std::vector<int> letter_take;
+    std::vector<int> money_for_trade;
 };
 
 #endif // LETTER_H

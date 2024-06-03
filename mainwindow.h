@@ -63,6 +63,9 @@ private slots:
 
     void on_spinBox_editingFinished();
 
+    void on_pushButton_offer_clicked();
+
+
 private:
     int timeToWait = 50;
     Trade* trade = new Trade();
@@ -85,6 +88,8 @@ private:
     void prepareEndScreen();
     void drawEndLetter(int value, int nr, QLabel* qLabel, bool is_green);
     void moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade_letters);
+    void set_and_draw_player_money();
+    bool is_new_offert = true;
 
 };
 #endif // MAINWINDOW_H

@@ -10,6 +10,7 @@
         <file>letter_green.png</file>
         <file>letter_90.png</file>
         <file>player.png</file>
+        <file>block_of_money.png</file>
     </qresource>
     <qresource prefix="/">
         <file>end_letter_green.png</file>
