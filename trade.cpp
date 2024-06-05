@@ -37,7 +37,7 @@ std::vector<Letter *> Trade::getPlayer_Letters() const
     return player_Letters;
 }
 
-bool Trade::is_offert_accepted(std::vector<int> letter_to_sell, int price_for_letters, int price)
+bool Trade::is_offert_accepted(std::vector<int> letter_to_sell, int price_for_letters, int price, bool check_history)
 {
     /*
     cout << "KOPERTY NA SPRZEDAZ: ";
@@ -46,37 +46,38 @@ bool Trade::is_offert_accepted(std::vector<int> letter_to_sell, int price_for_le
     }cout << " za: "<< price_for_letters << endl;
 
     cout << " KOPERTY HISTORIA: " << endl; */
-    for(vector<int> offert : offerts_history){
-        /*
-        for(int nr : offert){
-            cout << nr <<" ";
-        }cout << endl; */
+    if(check_history){
+        for(vector<int> offert : offerts_history){
+            /*
+            for(int nr : offert){
+                cout << nr <<" ";
+            }cout << endl; */
 
-        int isAccepted = offert[0];
-        int priceHistory = offert[offert.size()-1];
-        int letters_amount = offert.size()-2;
-        int same_letters_amount = 0;
-        for(int i=1; i < offert.size() - 1; i++){ //iterowanie po nr kopert w historii
-            for(int nr : letter_to_sell){
-                if(nr == offert[i]){
-                    same_letters_amount++;
+            int isAccepted = offert[0];
+            int priceHistory = offert[offert.size()-1];
+            int letters_amount = offert.size()-2;
+            int same_letters_amount = 0;
+            for(int i=1; i < offert.size() - 1; i++){ //iterowanie po nr kopert w historii
+                for(int nr : letter_to_sell){
+                    if(nr == offert[i]){
+                        same_letters_amount++;
+                    }
                 }
             }
-        }
-        if(letters_amount == letter_to_sell.size() and
-            same_letters_amount == letters_amount and
-            priceHistory == price_for_letters)
-        {
-            cout << "OFERTA JUZ BYLA, KOPERTY: ";
-            /*
-            for(int i=1; i< offert.size()-1; i++){
-                cout<<offert[i]<<" ";
+            if(letters_amount == letter_to_sell.size() and
+                same_letters_amount == letters_amount and
+                priceHistory == price_for_letters)
+            {
+                cout << "OFERTA JUZ BYLA, KOPERTY: ";
+                /*
+                for(int i=1; i< offert.size()-1; i++){
+                    cout<<offert[i]<<" ";
+                }
+                cout<<endl<<"ZA: "<< priceHistory<<endl; */
+                return false;
             }
-            cout<<endl<<"ZA: "<< priceHistory<<endl; */
-            return false;
         }
     }
-
 
 
     //std::cout << "TARGET: " << target_value << "  ILE MAMY W TEORII PO ofercie: " << price << std::endl;
@@ -113,7 +114,7 @@ Trade::Trade()
     cout << "WYLOSOWALEM: "<< target_value << endl;
 }
 
-bool Trade::player_offer(std::vector<int> letter_to_sell, int price_for_letters)
+bool Trade::player_offer(std::vector<int> letter_to_sell, int price_for_letters, bool check_history)
 {
     int sum = 0;
     int minus100 = 1;
@@ -137,7 +138,7 @@ bool Trade::player_offer(std::vector<int> letter_to_sell, int price_for_letters)
         }
     }
     //cout << "SUMA PO SUMIE: "  << sum << endl;
-    return is_offert_accepted(letter_to_sell, price_for_letters,(sum + price_for_letters + this->player_money)*(minus100)*(minus50));
+    return is_offert_accepted(letter_to_sell, price_for_letters, (sum + price_for_letters + this->player_money)*(minus100)*(minus50), check_history);
 }
 
 void Trade::start_trade()
@@ -191,6 +192,23 @@ void Trade::move_letters_to_host(std::vector<int> letter_to_sell, int trade_pric
     player_Letters = new_player_Letters;
 }
 
+void Trade::move_letters_to_player(std::vector<int> letters_to_give){
+    std::vector<Letter*> new_host_Letters;
+    for(Letter* letter : host_Letters){
+        bool was_added = false;
+        for(int nr : letters_to_give){
+            if(letter->getNr() == nr){
+                host_Letters.push_back(letter);
+                was_added = true;
+            }
+        }
+        if(!was_added){
+            new_host_Letters.push_back(letter);
+        }
+    }
+    host_Letters = new_host_Letters;
+}
+
 void Trade::set_player_letters(std::vector<Letter *> player_Letters)
 {
     this->player_Letters = player_Letters;
@@ -237,10 +255,10 @@ void Trade::generujKombinacje() {
             int host_let_num = rand() % host_Letters.size();
         }
     }
-    if(!player_Letters.empty()){
+    if(player_Letters.size() > 1){
         std::random_shuffle(player_Letters.begin(), player_Letters.end());
     }
-    if(!host_Letters.empty()){
+    if(host_Letters.size() > 1){
         std::random_shuffle(host_Letters.begin(), host_Letters.end());
     }
 
@@ -258,11 +276,12 @@ void Trade::generujKombinacje() {
         letters_host_num.push_back(getHost_Letters()[j]->getNr());
     }
 
-    float price = propability();
+    int price = round(propability() / 1000) * 1000;
+    cout << "PIERWSZA CENA" << price <<endl;
     int z = 0;
-    while(!player_offer(letters_num, host_letter_cash + price))
+    while(!player_offer(letters_num, host_letter_cash + price, false))
     {
-        price = propability();
+        price = round(propability() / 1000) * 1000;
         if(z%2 == 0){
             price = - (2*price);
         }
@@ -270,16 +289,25 @@ void Trade::generujKombinacje() {
         if(price < -getPlayer_money()){
             price = -getPlayer_money();
         }
+        cout << "ŁAJLOWA CENA" << price <<endl;
     }
 
     letter_give = letters_num;
     letter_take = letters_host_num;
     money_for_trade = price;
+    cout << "money_for_trade" << price <<endl;
 }
 
-// std::vector<std::vector<int> > Trade::take_new_offer()
-// {
-
-// }
-
-
+void Trade::acceptTrade(){
+    if(letter_give.size() > 0){
+        move_letters_to_host(letter_give, 0);
+    }
+    if(letter_take.size() > 0){
+        move_letters_to_player(letter_take);
+    }
+    player_money += money_for_trade;
+    cout << "AKCEPTED" << endl;
+}
+void Trade::cancelTrade(){
+    cout << "NIE NIE NIE AKCEPTED" << endl;
+}

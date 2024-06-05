@@ -66,6 +66,10 @@ private slots:
     void on_pushButton_offer_clicked();
 
 
+    void on_accept_trade_clicked();
+
+    void on_cancel_trade_clicked();
+
 private:
     int timeToWait = 50;
     Trade* trade = new Trade();
@@ -82,12 +86,14 @@ private:
     void lettersUI(Letter* letter, QLabel* qLabel);
     void paintLettersColors();
     int countGoodAnswers();
+    void check_to_end_game();
     void prepareTradeScreen();
     void setLettersNumbers();
     void drawLettersUITradeMode(Letter* letter, QLabel* qLabel);
     void prepareEndScreen();
     void drawEndLetter(int value, int nr, QLabel* qLabel, bool is_green);
     void moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade_letters);
+    void moveLetterToPlayerOnScreen(std::vector<Letter*> player_before_trade_letters);
     void set_and_draw_player_money();
     bool is_new_offert = true;
 

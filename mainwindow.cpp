@@ -205,6 +205,9 @@ void MainWindow::prepareTradeScreen()
     ui->stackedWidget->setCurrentIndex(2);
     setLettersNumbers();
 
+    ui->accept_trade->setVisible(false);
+    ui->cancel_trade->setVisible(false);
+
     int lose_amount = 5 - countGoodAnswers();
     if(lose_amount > 0){
         lose_amount--;
@@ -490,6 +493,14 @@ void MainWindow::on_pushButton_sell_clicked()
             ui->money->setVisible(false);
         }
     }
+    check_to_end_game();
+}
+
+void MainWindow::check_to_end_game(){
+    if(trade->getPlayer_Letters().size() == 0){
+        ui->stackedWidget->setCurrentIndex(3);
+        prepareEndScreen();
+    }
 }
 
 void MainWindow::moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade_letters){
@@ -507,32 +518,81 @@ void MainWindow::moveLetterToHostOnScreen(std::vector<Letter*> host_before_trade
                     int offset = 430;
                     if(pair.first == 1){
                         ui->my_letter_1->move(ui->my_letter_1->x() + offset, ui->my_letter_1->y());
-                        delete ui->butt1;
-                         trade->chosenLetter[1] = false;
+                        ui->butt1->setVisible(false);
+                        trade->chosenLetter[1] = false;
                         //ui->butt1->move(ui->butt1->x() + offset, ui->butt1->y());
                     }
                     if(pair.first == 2){
                         ui->my_letter_2->move(ui->my_letter_2->x() + offset, ui->my_letter_2->y());
-                        delete ui->butt2;
+                        ui->butt2->setVisible(false);
                         trade->chosenLetter[2] = false;
                         //ui->butt2->move(ui->butt2->x() + offset, ui->butt2->y());
                     }
                     if(pair.first == 3){
                         ui->my_letter_3->move(ui->my_letter_3->x() + offset, ui->my_letter_3->y());
-                        delete ui->butt3;
-                         trade->chosenLetter[3] = false;
+                        ui->butt3->setVisible(false);
+                        trade->chosenLetter[3] = false;
                         //ui->butt3->move(ui->butt3->x() + offset, ui->butt3->y());
                     }
                     if(pair.first == 4){
                         ui->my_letter_4->move(ui->my_letter_4->x() + offset, ui->my_letter_4->y());
-                        delete ui->butt4;
-                         trade->chosenLetter[4] = false;
+                        ui->butt4->setVisible(false);
+                        trade->chosenLetter[4] = false;
                         //ui->butt4->move(ui->butt4->x() + offset, ui->butt4->y());
                     }
                     if(pair.first == 5){
-                        delete ui->butt5;
-                         trade->chosenLetter[5] = false;
                         ui->my_letter_5->move(ui->my_letter_5->x() + offset, ui->my_letter_5->y());
+                        trade->chosenLetter[5] = false;
+                        ui->butt5->setVisible(false);
+                        //ui->butt5->move(ui->butt5->x() + offset, ui->butt5->y());
+                    }
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::moveLetterToPlayerOnScreen(std::vector<Letter*> player_before_trade_letters){
+    std::vector<Letter*> player_letters = trade->getPlayer_Letters();
+    for(Letter* letter : player_letters){
+        bool to_be_changed = true;
+        for(Letter* letter2 : player_before_trade_letters){
+            if(letter->getNr() == letter2->getNr()){
+                to_be_changed = false;
+            }
+        }
+        if(to_be_changed){
+            for (const auto& pair : trade->index_to_letter_number_map) {
+                if (pair.second == letter->getNr()) {
+                    int offset = -430;
+                    if(pair.first == 1){
+                        ui->my_letter_1->move(ui->my_letter_1->x() + offset, ui->my_letter_1->y());
+                        ui->butt1->setVisible(true);
+                        trade->chosenLetter[1] = false;
+                        //ui->butt1->move(ui->butt1->x() + offset, ui->butt1->y());
+                    }
+                    if(pair.first == 2){
+                        ui->my_letter_2->move(ui->my_letter_2->x() + offset, ui->my_letter_2->y());
+                        ui->butt2->setVisible(true);
+                        trade->chosenLetter[2] = false;
+                        //ui->butt2->move(ui->butt2->x() + offset, ui->butt2->y());
+                    }
+                    if(pair.first == 3){
+                        ui->my_letter_3->move(ui->my_letter_3->x() + offset, ui->my_letter_3->y());
+                        ui->butt3->setVisible(true);
+                        trade->chosenLetter[3] = false;
+                        //ui->butt3->move(ui->butt3->x() + offset, ui->butt3->y());
+                    }
+                    if(pair.first == 4){
+                        ui->my_letter_4->move(ui->my_letter_4->x() + offset, ui->my_letter_4->y());
+                        ui->butt4->setVisible(true);
+                        trade->chosenLetter[4] = false;
+                        //ui->butt4->move(ui->butt4->x() + offset, ui->butt4->y());
+                    }
+                    if(pair.first == 5){
+                        ui->my_letter_5->move(ui->my_letter_5->x() + offset, ui->my_letter_5->y());
+                        ui->butt5->setVisible(true);
+                        trade->chosenLetter[5] = false;
                         //ui->butt5->move(ui->butt5->x() + offset, ui->butt5->y());
                     }
                 }
@@ -603,5 +663,44 @@ void MainWindow::on_pushButton_offer_clicked()
     std::cout << trade->money_for_trade;
     std::cout << std::endl;
 
+
+    ui->pushButton_sell->setDisabled(true);
+    ui->pushButton_offer->setDisabled(true);
+    ui->accept_trade->setVisible(true);
+    ui->cancel_trade->setVisible(true);
+
+    check_to_end_game();
+}
+
+
+void MainWindow::on_accept_trade_clicked()
+{
+    vector<Letter*> host_before_trade_letters = trade->getHost_Letters();
+    vector<Letter*> player_before_trade_letters = trade->getPlayer_Letters();
+    trade->acceptTrade();
+    moveLetterToHostOnScreen(host_before_trade_letters);
+    moveLetterToPlayerOnScreen(player_before_trade_letters);
+    if(trade->player_money!=0){
+        ui->money->setVisible(true);
+        set_and_draw_player_money();
+    } else {
+        ui->money->setVisible(false);
+    }
+
+    check_to_end_game();
+    ui->pushButton_sell->setDisabled(false);
+    ui->pushButton_offer->setDisabled(false);
+    ui->accept_trade->setVisible(false);
+    ui->cancel_trade->setVisible(false);
+}
+
+
+void MainWindow::on_cancel_trade_clicked()
+{
+    trade->cancelTrade();
+    ui->pushButton_sell->setDisabled(false);
+    ui->pushButton_offer->setDisabled(false);
+    ui->accept_trade->setVisible(false);
+    ui->cancel_trade->setVisible(false);
 }
 
