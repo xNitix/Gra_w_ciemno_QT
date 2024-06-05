@@ -195,12 +195,14 @@ void Trade::set_player_letters(std::vector<Letter *> player_Letters)
 {
     this->player_Letters = player_Letters;
     for(Letter* letter : player_Letters){
-        if(letter->get_value()< -100 or letter->get_value() > 100000){
-            cout<< letter->get_value() << "  " << letter->getQuestion().getNumber();
-            cout << "   " << letter->getWin() << "  " << "JDJDJDJDJD" << endl;
-
-
-            letter->repair_value();
+        if(letter->get_value()< 0 or letter->get_value() > 100000){
+            if(letter->get_value() != -100 and letter->get_value() != -50)
+            {
+                cout<< letter->get_value() << "  " << letter->getQuestion().getNumber();
+                cout << "   " << letter->getWin() << "  " << "WYKRYWACZ SUS WARTOSCI" << endl;
+                letter->repair_value();
+                cout<< "PO NAPRAWIE: " <<letter->get_value();
+            }
         }
     }
 }
