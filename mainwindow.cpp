@@ -590,16 +590,18 @@ void MainWindow::on_butt5_released()
 
 void MainWindow::on_pushButton_offer_clicked()
 {
-    vector<vector<int>> res;
-    res = trade->take_offer();
-
-    for (int i = 0; i < res.size(); i++) {
-        // Iteruj przez wewnętrzny wektor
-        for (int j = 0; j < res[i].size(); j++) {
-            cout << res[i][j] << " ";
-        }
-        cout << endl; // Nowa linia po każdym wewnętrznym wektorze
+    trade->generujKombinacje();
+    for (int element : trade->letter_give) {
+        std::cout << element << " ";
     }
+    cout << "co to jest za droznya " << endl;
+
+    for (int element : trade->letter_take) {
+        std::cout << element << " ";
+    }
+    cout << "co sledziem jebie tak ? " << endl;
+    std::cout << trade->money_for_trade;
+    std::cout << std::endl;
 
 }
 

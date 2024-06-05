@@ -220,27 +220,27 @@ void Trade::set_trade_price(int price)
 }
 
 void Trade::generujKombinacje() {
-    int combinations_count = 0;
-    if((player_Letters.size() + host_Letters.size()) > 2){
-        combinations_count = 5;
-    } else if((player_Letters.size() + host_Letters.size())== 2){
-        combinations_count = 3;
-    } else {
-        combinations_count = 1;
-    }
-
     float player_cash_in_letter;
     for(Letter* letter : player_Letters){
         player_cash_in_letter += letter->get_value();
     }
-
-    int k = 0;
-
-    //while(k < combinations_count){
+    int host_let_num = 0;
     int player_let_num = rand() % player_Letters.size();
-    int host_let_num = rand() % host_Letters.size();
-    std::random_shuffle(player_Letters.begin(), player_Letters.end());
-    std::random_shuffle(host_Letters.begin(), host_Letters.end());
+    if(host_Letters.size() != 0){
+        int host_let_num = rand() % host_Letters.size();
+    }
+    while(player_let_num == 0 && host_let_num == 0){
+        player_let_num = rand() % player_Letters.size();
+        if(host_Letters.size() != 0){
+            int host_let_num = rand() % host_Letters.size();
+        }
+    }
+    if(!player_Letters.empty()){
+        std::random_shuffle(player_Letters.begin(), player_Letters.end());
+    }
+    if(!host_Letters.empty()){
+        std::random_shuffle(host_Letters.begin(), host_Letters.end());
+    }
 
     int player_letter_cash = 0;
     int host_letter_cash = 0;
@@ -257,25 +257,23 @@ void Trade::generujKombinacje() {
     }
 
     float price = propability();
-    if(player_offer(letters_num, host_letter_cash + price)){
-        k += 1;
-        letter_give = letters_num;
-        letter_take = letters_host_num;
-        money_for_trade.push_back(price);
+    int z = 0;
+    while(!player_offer(letters_num, host_letter_cash + price))
+    {
+        price = propability();
+        if(z%2 == 0){
+            price = - (2*price);
+        }
+        z++;
+        if(price < -getPlayer_money()){
+            price = -getPlayer_money();
+        }
     }
-    //}
-}
 
-std::vector<vector<int>> Trade::take_offer()
-{
-    generujKombinacje();
-    vector<vector<int>> res;
-    res.push_back(letter_give);
-    res.push_back(letter_take);
-    res.push_back(money_for_trade);
-    return res;
+    letter_give = letters_num;
+    letter_take = letters_host_num;
+    money_for_trade = price;
 }
-
 
 // std::vector<std::vector<int> > Trade::take_new_offer()
 // {

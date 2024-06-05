@@ -36,7 +36,7 @@ public:
     void generujKombinacje();
     std::vector<int> letter_give;
     std::vector<int> letter_take;
-    std::vector<int> money_for_trade;
+    int money_for_trade;
 };
 
 #endif // LETTER_H
