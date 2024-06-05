@@ -314,13 +314,26 @@ void MainWindow::prepareEndScreen()
     font.setPointSize(38);
     ui->label_win->setFont(font);
     ui->label_win->setAlignment(Qt::AlignCenter);
+
     int res = trade->getPlayer_money();
+    int decrease_100_multiplier = 1;
+    double decrease_50_multiplier = 1;
+
     int player_letters_amount = trade->getPlayer_Letters().size();
     int letters_total_amount = player_letters_amount + trade->getHost_Letters().size();
     std::vector<int> letter_numbers;
     std::vector<int> letter_values;
     for(Letter* letter : trade->getPlayer_Letters()){
-        res += letter->get_value();
+        if(letter->get_value() == -100){
+            decrease_100_multiplier = 0;
+        }
+        else if(letter->get_value() == -100){
+            decrease_50_multiplier /= 2;
+        }
+        else{
+            res += letter->get_value();
+        }
+
         letter_numbers.push_back(letter->getNr());
         letter_values.push_back(letter->get_value());
     }
@@ -381,6 +394,9 @@ void MainWindow::prepareEndScreen()
     index++;
     if(index > letters_total_amount){delete ui->last_letter5;}
 
+    cout << "RES PRZED DEBUFEM: " << res << endl;
+    res = res * decrease_100_multiplier * decrease_50_multiplier;
+    cout << "RES PO DEBUFIE: " << res << endl;
     string result = "Wygrałeś łącznie: " + to_string(res) + " zł!";
     ui->label_win->setText(QString::fromStdString(result));
 }
@@ -606,48 +622,13 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
     trade->set_trade_price(ui->spinBox->value());
 }
 
-
-void MainWindow::on_spinBox_textChanged(const QString &arg1)
-{
-    //on_pushButton_sell_clicked();
-}
-
-
-void MainWindow::on_spinBox_editingFinished()
-{
-    //on_pushButton_sell_clicked();
-}
-
-
-void MainWindow::on_butt1_released()
-{
-
-}
-
-
-void MainWindow::on_butt2_released()
-{
-
-}
-
-
-void MainWindow::on_butt3_released()
-{
-
-}
-
-
-void MainWindow::on_butt4_released()
-{
-
-}
-
-
-void MainWindow::on_butt5_released()
-{
-
-}
-
+void MainWindow::on_spinBox_textChanged(const QString &arg1){}
+void MainWindow::on_spinBox_editingFinished(){}
+void MainWindow::on_butt1_released(){}
+void MainWindow::on_butt2_released(){}
+void MainWindow::on_butt3_released(){}
+void MainWindow::on_butt4_released(){}
+void MainWindow::on_butt5_released(){}
 void MainWindow::on_pushButton_offer_clicked()
 {
     trade->generujKombinacje();
