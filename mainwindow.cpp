@@ -339,9 +339,10 @@ void MainWindow::prepareEndScreen()
     std::vector<int> letter_values;
     for(Letter* letter : trade->getPlayer_Letters()){
         if(letter->get_value() == -100){
+            cout << "- stuwka!\n";
             decrease_100_multiplier = 0;
         }
-        else if(letter->get_value() == -100){
+        else if(letter->get_value() == -50){
             decrease_50_multiplier /= 2;
         }
         else{
@@ -523,7 +524,7 @@ void MainWindow::on_pushButton_sell_clicked()
         } else {
             ui->money->setVisible(false);
         }
-        string dialogue = "Dobrze, akceptuję tę sprzedaż.\nOto twoje ";
+        string dialogue = "Dobrze, akceptuję tę ofertę.\nOto twoje ";
 
         if(trade_price == 0){
             dialogue += "NIC :)!";
