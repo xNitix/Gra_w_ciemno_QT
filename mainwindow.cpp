@@ -45,11 +45,25 @@ MainWindow::MainWindow(QWidget *parent)
         int i = 1;
         QTextStream in(&file);
         QString  line;
+        vector<QString> questions;
+
+        while (!in.atEnd()){
+            line = in.readLine();
+            questions.push_back(line);
+        }
+        cout << "TYLE PYTAŃ " << questions.size() <<endl <<endl;
+
+        if(roll_questions){
+            std::random_device rd;
+            std::mt19937 gen2(rd());
+            std::shuffle(questions.begin(), questions.end(), gen2);
+        }
+
         for (QPushButton* button : buttons) {
             button->setText(QString::number(i));
             button->setStyleSheet("background-image: url(:/m/letter.png); background-repeat: no-repeat; background-position: center; font-size: 15px; text-align: bottom;");
 
-            line = in.readLine();
+            line = questions[i-1];
             Letter *letter = new Letter(button, values[i],  line.toStdString(), i);
             connect(button, &QPushButton::clicked, [this, letter](bool) {this->onAnswerPressed(letter);});
             i++;
@@ -498,7 +512,8 @@ void MainWindow::on_butt5_pressed()
 void MainWindow::on_pushButton_sell_clicked()
 {
     vector<Letter*> host_before_trade_letters = trade->getHost_Letters();
-    trade->set_trade_price(ui->spinBox->value());
+    int trade_price = ui->spinBox->value();
+    trade->set_trade_price(trade_price);
     trade->start_trade();
     if(trade->wasTradeAccepted){
         moveLetterToHostOnScreen(host_before_trade_letters);
@@ -508,8 +523,35 @@ void MainWindow::on_pushButton_sell_clicked()
         } else {
             ui->money->setVisible(false);
         }
+        string dialogue = "Dobrze, akceptuję tę sprzedaż.\nOto twoje ";
+
+        if(trade_price == 0){
+            dialogue += "NIC :)!";
+        }else{
+            dialogue += to_string(trade_price) + " zł!";
+        }
+        host_dialogue(dialogue);
     }
+    else if(trade->was_already_said){
+            host_dialogue("Poproszę o nową ofertę!");
+    }
+    else {
+        int suma = 0;
+        for(bool val : trade->chosenLetter){
+            suma += val;
+        }
+        if(suma == 0){
+            host_dialogue("Nic od pana?");
+        }else{
+            host_dialogue("Proponuję coś innego!");
+        }
+    }
+
     check_to_end_game();
+}
+
+void MainWindow::host_dialogue(string text){
+    ui->host_text->setText(QString::fromStdString(text));
 }
 
 void MainWindow::check_to_end_game(){
@@ -644,6 +686,43 @@ void MainWindow::on_pushButton_offer_clicked()
     std::cout << trade->money_for_trade;
     std::cout << std::endl;
 
+    string letters_for_player = "";
+    for(int nr : trade->letter_take){
+        letters_for_player += to_string(nr) + ", ";
+    }
+    if(letters_for_player.size() > 2){
+        letters_for_player.pop_back();
+        letters_for_player.pop_back();
+    }
+
+    string letters_for_host = "";
+    for(int nr : trade->letter_give){
+        letters_for_host += to_string(nr) + ", ";
+    }
+    if(letters_for_host.size() > 2){
+        letters_for_host.pop_back();
+        letters_for_host.pop_back();
+    }
+
+
+    string dialogue="";
+    if(letters_for_host.size() > 0){
+        dialogue = "Proponuję pańskie: " + letters_for_host + "\n";
+    }
+
+    if(letters_for_player.size() > 0){
+        dialogue = "Za moje: " + letters_for_player + "\n";
+    }
+
+    if(trade->money_for_trade > 0){
+        dialogue += "Dostanie pan: " + to_string(trade->money_for_trade) + " zł!";
+    }else if (trade->money_for_trade < 0){
+        dialogue += "Ale za Pana: " + to_string(abs(trade->money_for_trade)) + " zł!";
+    }
+    else{
+        dialogue += "Pieniądze nie wchodzą w grę";
+    }
+    host_dialogue(dialogue);
 
     ui->pushButton_sell->setDisabled(true);
     ui->pushButton_offer->setDisabled(true);
@@ -656,6 +735,7 @@ void MainWindow::on_pushButton_offer_clicked()
 
 void MainWindow::on_accept_trade_clicked()
 {
+    host_dialogue("Dobry interes!");
     vector<Letter*> host_before_trade_letters = trade->getHost_Letters();
     vector<Letter*> player_before_trade_letters = trade->getPlayer_Letters();
     trade->acceptTrade();
@@ -678,6 +758,7 @@ void MainWindow::on_accept_trade_clicked()
 
 void MainWindow::on_cancel_trade_clicked()
 {
+    host_dialogue("No to może coś innego!");
     trade->cancelTrade();
     ui->pushButton_sell->setDisabled(false);
     ui->pushButton_offer->setDisabled(false);

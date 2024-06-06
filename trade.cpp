@@ -46,6 +46,7 @@ bool Trade::is_offert_accepted(std::vector<int> letter_to_sell, int price_for_le
     }cout << " za: "<< price_for_letters << endl;
 
     cout << " KOPERTY HISTORIA: " << endl; */
+    was_already_said = false;
     if(check_history){
         for(vector<int> offert : offerts_history){
             /*
@@ -68,6 +69,7 @@ bool Trade::is_offert_accepted(std::vector<int> letter_to_sell, int price_for_le
                 same_letters_amount == letters_amount and
                 priceHistory == price_for_letters)
             {
+                was_already_said = true;
                 cout << "OFERTA JUZ BYLA, KOPERTY: ";
                 /*
                 for(int i=1; i< offert.size()-1; i++){

@@ -2209,6 +2209,31 @@
       <string>Odrzuć</string>
      </property>
     </widget>
+    <widget class="QLabel" name="host_text">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>110</y>
+       <width>351</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Teraz faza wymian za koperty, co masz do zaoferowania?</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="page4">
     <widget class="QLabel" name="background_4">

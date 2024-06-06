@@ -71,6 +71,7 @@ private slots:
     void on_cancel_trade_clicked();
 
 private:
+    bool roll_questions = false;
     int timeToWait = 50;
     Trade* trade = new Trade();
     void init_picked_letters();
@@ -88,6 +89,7 @@ private:
     int countGoodAnswers();
     void check_to_end_game();
     void prepareTradeScreen();
+    void host_dialogue(std::string text);
     void setLettersNumbers();
     void drawLettersUITradeMode(Letter* letter, QLabel* qLabel);
     void prepareEndScreen();

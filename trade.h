@@ -18,6 +18,7 @@ private:
 
 public:
     int player_money = 0;
+    bool was_already_said = 0;
     std::map<int, int> index_to_letter_number_map;
     Trade();
     bool wasTradeAccepted = false;
