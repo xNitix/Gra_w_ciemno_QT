@@ -674,6 +674,7 @@ void MainWindow::on_butt4_released(){}
 void MainWindow::on_butt5_released(){}
 void MainWindow::on_pushButton_offer_clicked()
 {
+    std::cout << "a moze tutaj";
     trade->generujKombinacje();
     for (int element : trade->letter_give) {
         std::cout << element << " ";

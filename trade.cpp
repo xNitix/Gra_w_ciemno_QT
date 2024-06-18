@@ -243,26 +243,32 @@ void Trade::set_trade_price(int price)
 
 void Trade::generujKombinacje() {
     float player_cash_in_letter;
+    int pint = player_Letters.size();
+    int hint = host_Letters.size();
+    cout << pint << " " << hint << " " <<endl;
     for(Letter* letter : player_Letters){
         player_cash_in_letter += letter->get_value();
     }
     int host_let_num = 0;
-    int player_let_num = rand() % player_Letters.size();
+    int player_let_num = rand() % player_Letters.size() + 1;
     if(host_Letters.size() != 0){
-        int host_let_num = rand() % host_Letters.size();
+        int host_let_num = rand() % host_Letters.size() + 1;
     }
+
     while(player_let_num == 0 && host_let_num == 0){
-        player_let_num = rand() % player_Letters.size();
+        player_let_num = rand() % player_Letters.size() + 1;
         if(host_Letters.size() != 0){
-            int host_let_num = rand() % host_Letters.size();
+            int host_let_num = rand() % host_Letters.size() + 1;
         }
     }
+    std::cout << "tutaj";
     if(player_Letters.size() > 1){
         std::random_shuffle(player_Letters.begin(), player_Letters.end());
     }
     if(host_Letters.size() > 1){
         std::random_shuffle(host_Letters.begin(), host_Letters.end());
     }
+    std::cout << "po shufflu";
 
     int player_letter_cash = 0;
     int host_letter_cash = 0;
