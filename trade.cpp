@@ -70,12 +70,6 @@ bool Trade::is_offert_accepted(std::vector<int> letter_to_sell, int price_for_le
                 priceHistory == price_for_letters)
             {
                 was_already_said = true;
-                cout << "OFERTA JUZ BYLA, KOPERTY: ";
-                /*
-                for(int i=1; i< offert.size()-1; i++){
-                    cout<<offert[i]<<" ";
-                }
-                cout<<endl<<"ZA: "<< priceHistory<<endl; */
                 return false;
             }
         }
@@ -170,7 +164,6 @@ void Trade::start_trade()
     //cout << "TEST OFERTY" << endl;
     bool result = player_offer(letter_to_sell, trade_price);
     if(result){
-        cout << "Transakcja powiodla sie!" << endl;
         wasTradeAccepted = true;
         move_letters_to_host(letter_to_sell, trade_price);
     }
@@ -218,10 +211,7 @@ void Trade::set_player_letters(std::vector<Letter *> player_Letters)
         if(letter->get_value()< 0 or letter->get_value() > 100000){
             if(letter->get_value() != -100 and letter->get_value() != -50)
             {
-                cout<< letter->get_value() << "  " << letter->getQuestion().getNumber();
-                cout << "   " << letter->getWin() << "  " << "WYKRYWACZ SUS WARTOSCI" << endl;
                 letter->repair_value();
-                cout<< "PO NAPRAWIE: " <<letter->get_value();
             }
         }
     }
@@ -261,14 +251,12 @@ void Trade::generujKombinacje() {
             int host_let_num = rand() % host_Letters.size() + 1;
         }
     }
-    std::cout << "tutaj";
     if(player_Letters.size() > 1){
         std::random_shuffle(player_Letters.begin(), player_Letters.end());
     }
     if(host_Letters.size() > 1){
         std::random_shuffle(host_Letters.begin(), host_Letters.end());
     }
-    std::cout << "po shufflu";
 
     int player_letter_cash = 0;
     int host_letter_cash = 0;
@@ -285,7 +273,6 @@ void Trade::generujKombinacje() {
     }
 
     int price = round(propability() / 1000) * 1000;
-    cout << "PIERWSZA CENA" << price <<endl;
     int z = 0;
     while(!player_offer(letters_num, host_letter_cash + price, false))
     {
@@ -297,13 +284,11 @@ void Trade::generujKombinacje() {
         if(price < -getPlayer_money()){
             price = -getPlayer_money();
         }
-        cout << "ŁAJLOWA CENA" << price <<endl;
     }
 
     letter_give = letters_num;
     letter_take = letters_host_num;
     money_for_trade = price;
-    cout << "money_for_trade" << price <<endl;
 }
 
 void Trade::acceptTrade(){

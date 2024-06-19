@@ -51,7 +51,6 @@ MainWindow::MainWindow(QWidget *parent)
             line = in.readLine();
             questions.push_back(line);
         }
-        cout << "TYLE PYTAŃ " << questions.size() <<endl <<endl;
 
         if(roll_questions){
             std::random_device rd;
@@ -339,7 +338,6 @@ void MainWindow::prepareEndScreen()
     std::vector<int> letter_values;
     for(Letter* letter : trade->getPlayer_Letters()){
         if(letter->get_value() == -100){
-            cout << "- stuwka!\n";
             decrease_100_multiplier = 0;
         }
         else if(letter->get_value() == -50){
@@ -409,9 +407,7 @@ void MainWindow::prepareEndScreen()
     index++;
     if(index > letters_total_amount){delete ui->last_letter5;}
 
-    cout << "RES PRZED DEBUFEM: " << res << endl;
     res = res * decrease_100_multiplier * decrease_50_multiplier;
-    cout << "RES PO DEBUFIE: " << res << endl;
     string result = "Wygrałeś łącznie: " + to_string(res) + " zł!";
     ui->label_win->setText(QString::fromStdString(result));
 }
@@ -674,19 +670,7 @@ void MainWindow::on_butt4_released(){}
 void MainWindow::on_butt5_released(){}
 void MainWindow::on_pushButton_offer_clicked()
 {
-    std::cout << "a moze tutaj";
     trade->generujKombinacje();
-    for (int element : trade->letter_give) {
-        std::cout << element << " ";
-    }
-    cout << "co to jest za droznya " << endl;
-
-    for (int element : trade->letter_take) {
-        std::cout << element << " ";
-    }
-    cout << "co sledziem jebie tak ? " << endl;
-    std::cout << trade->money_for_trade;
-    std::cout << std::endl;
 
     string letters_for_player = "";
     for(int nr : trade->letter_take){

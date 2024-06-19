@@ -71,8 +71,8 @@ private slots:
     void on_cancel_trade_clicked();
 
 private:
-    bool roll_questions = false;
-    int timeToWait = 50;
+    bool roll_questions = true;
+    int timeToWait = 1500;
     Trade* trade = new Trade();
     void init_picked_letters();
     std::vector<Letter*> letters;
