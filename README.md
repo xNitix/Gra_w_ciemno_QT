@@ -14,15 +14,11 @@
 
 ![](screenshots/2.png)
 
-## 3. End of question faze
-
-![](screenshots/4.png)
-
-## 4. Trade offers
+## 3. Trade offers
 
 ![](screenshots/5.png)
 
-## 5. Winning screen
+## 4. Winning screen
 
 ![](screenshots/6.png)
 
